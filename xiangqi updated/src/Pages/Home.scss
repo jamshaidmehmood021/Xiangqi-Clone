@@ -1,0 +1,21 @@
+.tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-bottom: 4px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.selected-tab {
+    border-color: rgba(156,13,5); 
+    color:   rgb(194, 53, 46); /* Red-400 */
+}
+
+.tab-text span {
+    font-size: 1rem;
+}
+
+.input-background {
+    background-color: rgb(246, 241, 232);
+    color  : rgb(101, 79, 77);
+}
+
