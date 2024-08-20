@@ -3,8 +3,6 @@ import React from 'react';
 import './LandingPage.scss';
 
 const Home = () => {
-   
-
     return (
         <div className="flex h-screen">
             <div className="fixed-left-div">

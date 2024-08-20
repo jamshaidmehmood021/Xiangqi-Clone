@@ -13,7 +13,6 @@ import CustomDropDown from '../Components/CustomDropDown';
 import axiosInstance from "../lib/axios";
 import Button from '../Components/PlainButton';
 import Input from '../Components/Input';
-import "./Home.scss";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()

@@ -2,7 +2,6 @@ import React, { useState, Suspense } from 'react';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-import './Home.scss';
 import Button from '../Components/CustomButton';
 import { LazySignIn, LazySignUp } from '../LazyComponent/LazyLoading';
 

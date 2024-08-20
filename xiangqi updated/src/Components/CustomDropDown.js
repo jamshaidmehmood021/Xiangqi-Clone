@@ -1,11 +1,11 @@
 import React from 'react';
-
-import "../Pages/Home.scss"
+import PropTypes from 'prop-types';
+import "./CustomDropDown.scss";
 
 const CustomDropDown = (props) => {
     const { data, innerProps, selectProps } = props;
     const index = selectProps.options.findIndex(option => option.value === data.value);
-    
+
     const backgroundColorClass = index % 2 === 0 ? 'bg-black' : 'bg-red-700';
 
     return (
@@ -23,6 +23,22 @@ const CustomDropDown = (props) => {
             )}
         </div>
     );
+};
+
+CustomDropDown.propTypes = {
+    data: PropTypes.shape({
+        flag: PropTypes.string,
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
+    }).isRequired,
+    innerProps: PropTypes.object.isRequired,
+    selectProps: PropTypes.shape({
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.string.isRequired
+            })
+        ).isRequired
+    }).isRequired
 };
 
 export default CustomDropDown;

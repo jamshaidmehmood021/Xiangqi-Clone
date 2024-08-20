@@ -7,18 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from "../lib/axios";
 import Button from '../Components/PlainButton';
 import Input from '../Components/Input';
-import "./Home.scss";
 
 const SignIn = () => {
     const navigate= useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
-   
-
     const onSubmit = async (event) => {
         event.preventDefault();
-
         const newErrors = {};
         if (!username) newErrors.username = 'Email or Username is required';
         if (!password) newErrors.password = 'Password is required';
@@ -27,10 +23,8 @@ const SignIn = () => {
             setErrors(newErrors);
             return;
         }
-
         try {
             const response = await axiosInstance.post("/token/", { username, password });
-
             if (response.status === 200) {
                 const { access, refresh } = response.data;
                 const user = jwtDecode(access);
@@ -46,7 +40,6 @@ const SignIn = () => {
             toast.error('An error occurred during login. Please try again.');
         }
     };
-
     return (
         <>
             <form onSubmit={onSubmit} className="space-y-4">

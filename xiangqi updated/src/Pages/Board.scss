@@ -1,12 +1,3 @@
-body {
-  background-color: #f4f4f9;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Arial', sans-serif;
-}
 
 .board-container {
   display: flex;
@@ -23,6 +14,7 @@ body {
 }
 
 .board {
+  background-size: cover;
   width: 80vmin;
   height: 80vmin;
   display: grid;
@@ -89,8 +81,7 @@ body {
   width: 100%;
   height: 100%;
   padding: 5%;
-  border: 1px solid #d4a373;
-  background-color: #e2c7a1;
+  
   transition: background-color 0.3s, transform 0.3s;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
