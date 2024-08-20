@@ -1,7 +1,6 @@
 import React, { lazy } from 'react';
 import { Bars } from 'react-loading-icons';
 
-// Lazy load the components
 const Home = lazy(() => import('../Pages/Home'));
 const SignIn = lazy(() => import('../Pages/SignIn'));
 const SignUp = lazy(() => import('../Pages/SignUp'));

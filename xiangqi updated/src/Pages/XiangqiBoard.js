@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+
+import { parseFEN } from '../Utilities/parseFEN';
 import './Board.scss';
 import {
   validAdvisorMoves, 
@@ -9,7 +12,7 @@ import {
   validHorseMoves,
   validSoldierMoves 
 } from '../Utilities/validateMoves.js';
-import { parseFEN } from '../Utilities/parseFEN';
+
 
 const XiangqiBoard = () => {
   const initialFen = 'rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR';
@@ -20,7 +23,7 @@ const XiangqiBoard = () => {
     validMoves: [],
     moveHistory: [],
     fen: initialFen,
-    turn: 'r' // 'r' for red, 'b' for black
+    turn: 'r'
   });
 
   const pieceRules = {
@@ -55,7 +58,7 @@ const XiangqiBoard = () => {
     'b_general': 'G',
     'b_cannon': 'C',
     'b_soldier': 'S',
-    null: '1' // Use '1' for empty spaces
+    null: '1' 
   };
   
   const updateFEN = (board) => {
@@ -106,12 +109,11 @@ const XiangqiBoard = () => {
         const newBoard = board.map(row => row.slice()); // Clone the board
         const [prevRow, prevCol] = selectedPosition;
         const movedPiece = newBoard[prevRow][prevCol];
-        const capturedPiece = newBoard[rowIndex][colIndex]; // Capture the piece at the destination (if any)
+        const capturedPiece = newBoard[rowIndex][colIndex];
   
         newBoard[rowIndex][colIndex] = movedPiece;
         newBoard[prevRow][prevCol] = null;
   
-        // Update the FEN string after the move
         const newFEN = updateFEN(newBoard);
   
         setGameState(prevState => ({
@@ -120,12 +122,12 @@ const XiangqiBoard = () => {
           selectedPiece: null,
           selectedPosition: null,
           validMoves: [],
-          fen: newFEN, // Update the FEN in the state
+          fen: newFEN, 
           moveHistory: [
             ...prevState.moveHistory, 
             { from: selectedPosition, to: [rowIndex, colIndex], piece: movedPiece, capturedPiece, capturedPosition: capturedPiece ? [rowIndex, colIndex] : null }
           ],
-          turn: turn === 'r' ? 'b' : 'r' // Switch turn
+          turn: turn === 'r' ? 'b' : 'r' 
         }));
       }
     } else {
@@ -148,9 +150,9 @@ const XiangqiBoard = () => {
     const piece = board[fromRow][fromCol];
     const targetPiece = board[toRow][toCol];
   
-    // Check if the target cell has a piece of the same color
+    // Invalid move as piece is trying to capture its own piece
     if (targetPiece && piece[0] === targetPiece[0]) {
-      return false; // Invalid move as it's trying to capture its own piece
+      return false; 
     }
   
     return pieceRules[piece]?.(fromRow, fromCol, toRow, toCol, board) ?? false;
@@ -175,29 +177,25 @@ const XiangqiBoard = () => {
     if (gameState.moveHistory.length === 0) return;
   
     const lastMove = gameState.moveHistory[gameState.moveHistory.length - 1];
-    const newBoard = gameState.board.map(row => row.slice()); // Clone the board
-  
-    // Restore the moved piece to its original position
+    const newBoard = gameState.board.map(row => row.slice());
+
     newBoard[lastMove.from[0]][lastMove.from[1]] = lastMove.piece;
     newBoard[lastMove.to[0]][lastMove.to[1]] = null;
-  
-    // If a piece was captured, restore it to its original position
+
     if (lastMove.capturedPiece && lastMove.capturedPosition) {
       newBoard[lastMove.capturedPosition[0]][lastMove.capturedPosition[1]] = lastMove.capturedPiece;
     }
-  
-    // Update the FEN string after undoing the move
+
     const newFEN = updateFEN(newBoard);
   
     setGameState(prevState => ({
       ...prevState,
       board: newBoard,
-      fen: newFEN, // Update the FEN in the state
-      moveHistory: prevState.moveHistory.slice(0, -1), // Remove the last move from history
-      turn: prevState.turn === 'r' ? 'b' : 'r' // Switch turn back to the previous player
+      fen: newFEN, 
+      moveHistory: prevState.moveHistory.slice(0, -1), 
+      turn: prevState.turn === 'r' ? 'b' : 'r' 
     }));
   };
-  
 
   return (
     <>

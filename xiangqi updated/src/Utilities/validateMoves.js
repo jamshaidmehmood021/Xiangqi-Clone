@@ -3,7 +3,7 @@ export const validChariotMoves = (row, col, toRow, toCol, board) => {
     const rStep = row === toRow ? 0 : (toRow - row) / Math.abs(toRow - row);
     const cStep = col === toCol ? 0 : (toCol - col) / Math.abs(toCol - col);
   
-    // this is the condition that ensure that chariot will not jump the pieces
+    // this is the condition is used to ensure that chariot will not jump the pieces
     for (let r = row + rStep, c = col + cStep; r !== toRow || c !== toCol; r += rStep, c += cStep) {
       if (board[r][c]) return false; 
     }
@@ -24,13 +24,11 @@ export const validChariotMoves = (row, col, toRow, toCol, board) => {
       const dy = Math.abs(fromCol - toCol);
   
       if (dx === 2 && dy === 1) {
-        // Checking if the horizontal path is blocked
         const blockingRow = fromRow + (toRow - fromRow) / 2;
         if (board[blockingRow][fromCol] === null) {
           return true;
         }
       } else if (dx === 1 && dy === 2) {
-        // Checking if the vertical path is blocked
         const blockingCol = fromCol + (toCol - fromCol) / 2;
         if (board[fromRow][blockingCol] === null) {
           return true;
@@ -113,3 +111,4 @@ export const validChariotMoves = (row, col, toRow, toCol, board) => {
         }
     }
   };  
+  

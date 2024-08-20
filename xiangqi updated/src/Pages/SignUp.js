@@ -3,12 +3,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Select from 'react-select';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+
+
 import { countryOptions, skillLevelOptions } from '../Components/options';
 import CustomDropDown from '../Components/CustomDropDown';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from "../lib/axios";
-import { useNavigate } from 'react-router-dom';
 import Button from '../Components/PlainButton';
 import Input from '../Components/Input';
 import "./Home.scss";
@@ -34,10 +36,8 @@ const SignUp = () => {
         resolver: yupResolver(validationSchema)
     });
 
-    // Function to handle form submission
     const onSubmit = async (data) => {
         try {
-            // Make API request to sign up
             const response = await axiosInstance.post('/signup', {
                 email: data.email,
                 username: data.username,
@@ -47,10 +47,9 @@ const SignUp = () => {
             });
 
             if (response.status === 200) {
-                // On success, handle the authentication token and navigate to the board
                 const { token } = response.data;
-                localStorage.setItem('token', token); // Save token to localStorage
-                axiosInstance.defaults.headers.Authorization = `Bearer ${token}`; // Set token in axios headers
+                localStorage.setItem('token', token);
+                axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
 
                 toast.success("Successfully signed up!");
                 navigate('/board');
