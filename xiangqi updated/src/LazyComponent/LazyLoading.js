@@ -1,11 +1,11 @@
 import React, { lazy } from 'react';
 import { Bars } from 'react-loading-icons';
 
-const Home = lazy(() => import('../Pages/Home'));
-const SignIn = lazy(() => import('../Pages/SignIn'));
-const SignUp = lazy(() => import('../Pages/SignUp'));
-const Board = lazy(() => import('../Pages/Board'));
-const LandingPage = lazy(()=> import('../Pages/LandingPage.js'));
+const Home = lazy(() => import('Pages/Home'));
+const SignIn = lazy(() => import('Pages/SignIn'));
+const SignUp = lazy(() => import('Pages/SignUp'));
+const Board = lazy(() => import('Pages/Board'));
+const LandingPage = lazy(()=> import('Pages/LandingPage.js'));
 
 export const LazyHome = () => (
   <React.Suspense fallback={<Bars />}>

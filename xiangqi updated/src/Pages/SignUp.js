@@ -6,11 +6,11 @@ import Select from 'react-select';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
-import { countryOptions, skillLevelOptions } from '../Components/options';
-import CustomDropDown from '../Components/CustomDropDown';
-import axiosInstance from "../lib/axios";
-import Button from '../Components/PlainButton';
-import Input from '../Components/Input';
+import { countryOptions, skillLevelOptions } from 'Components/options';
+import CustomDropDown from 'Components/CustomDropDown';
+import axiosInstance from "lib/axios";
+import Button from 'Components/PlainButton';
+import Input from 'Components/Input';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()

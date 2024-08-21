@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./CustomDropDown.scss";
+import "Components/CustomDropDown.scss";
 
 const CustomDropDown = (props) => {
     const { data, innerProps, selectProps } = props;

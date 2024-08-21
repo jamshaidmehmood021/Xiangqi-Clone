@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import axiosInstance from "../lib/axios";
-import Button from '../Components/PlainButton';
-import Input from '../Components/Input';
-import { AuthContext } from '../Context/authContext';
+import axiosInstance from "lib/axios";
+import Button from 'Components/PlainButton';
+import Input from 'Components/Input';
+import { AuthContext } from 'Context/authContext';
 
 const SignIn = () => {
     const navigate = useNavigate();

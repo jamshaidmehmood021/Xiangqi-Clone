@@ -2,8 +2,8 @@ import React, { useState, Suspense } from 'react';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../Components/CustomButton';
-import { LazySignIn, LazySignUp } from '../LazyComponent/LazyLoading';
+import Button from 'Components/CustomButton';
+import { LazySignIn, LazySignUp } from 'LazyComponent/LazyLoading';
 
 const Home = () => {
     const navigate = useNavigate();
