@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import GameGrid from 'Components/BoardComponents/GameGrid';
+
 import 'Components/BoardComponents/BoardContainer.scss';
 
-const BoardContainer = ({ size, board }) => {
+const BoardContainer = (prop) => {
+    const { size, board } = prop;
     const squareSizeCalc = size.width / 10;
 
     return (
@@ -18,6 +22,14 @@ const BoardContainer = ({ size, board }) => {
             <GameGrid board={board} size={size} />
         </div>
     );
+};
+
+BoardContainer.propTypes = {
+    size: PropTypes.shape({
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+    }).isRequired,
+    board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
 
 export default BoardContainer;

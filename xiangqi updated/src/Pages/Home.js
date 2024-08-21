@@ -3,6 +3,7 @@ import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 import Button from 'Components/CustomButton';
+
 import { LazySignIn, LazySignUp } from 'LazyComponent/LazyLoading';
 
 const Home = () => {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import BoardContainer from 'Components/BoardComponents/BoardContainer';
+
 import { parseFEN } from 'Utilities/parseFEN';
 
 const Board = () => {
