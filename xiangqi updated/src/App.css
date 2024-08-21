@@ -1,10 +1,22 @@
 body {
-    background-color: #f4f4f9;
+
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Arial', sans-serif;
+  }
+
+  @media (max-width: 47.9375em) {
+    #game-area {
+      height: 100%;
+      width: 100%;
+      background-color: rgb(255, 251, 242);
+    }
+  
+    .board-wrapper {
+      padding: 0px;
+    }
   }
   

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './LandingPage.scss';
+import 'Pages/LandingPage.scss';
 
 const Home = () => {
     return (

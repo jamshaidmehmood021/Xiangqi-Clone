@@ -1,0 +1,90 @@
+
+.square {
+  float: left;
+  position: relative;
+  padding: 5px;
+}
+
+.piece {
+  font-size: 36px;
+}
+
+
+@mixin piece-style($color, $image) {
+  background-color: $color;
+  box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 5px,
+    rgba(255, 255, 255, 0.3) 0px 4px 2px 0px inset,
+    rgba(0, 0, 0, 0.3) 0px -3px 2px 0px inset;
+  border-radius: 100%;
+  height: 100%;
+  display: block;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  background-image: url($image);
+
+  @media (max-width: 47.9375em) {
+    background-size: 15px;
+  }
+
+  @media (max-height: 47.9375em) {
+    background-size: 15px;
+  }
+}
+
+.r_chariot {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/rook.svg');
+}
+
+.r_horse {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/horse.svg');
+}
+
+.r_elephant {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/elephant.svg');
+}
+
+.r_advisor {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/advisor.svg');
+}
+
+.r_general {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/king.svg');
+}
+
+.r_cannon {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/cannon.svg');
+}
+
+.r_soldier {
+  @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/pawn.svg');
+}
+
+.b_chariot {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/rook.svg');
+}
+
+.b_horse {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/horse.svg');
+}
+
+.b_elephant {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/elephant.svg');
+}
+
+.b_advisor {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/advisor.svg');
+}
+
+.b_general {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/king.svg');
+}
+
+.b_cannon {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/cannon.svg');
+}
+
+.b_soldier {
+  @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/pawn.svg');
+}

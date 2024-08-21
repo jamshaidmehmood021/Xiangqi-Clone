@@ -4,15 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import Select from 'react-select';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
+import { countryOptions, skillLevelOptions } from 'Components/options';
+import CustomDropDown from 'Components/CustomDropDown';
+import Button from 'Components/PlainButton';
+import Input from 'Components/Input';
 
-import { countryOptions, skillLevelOptions } from '../Components/options';
-import CustomDropDown from '../Components/CustomDropDown';
-import axiosInstance from "../lib/axios";
-import Button from '../Components/PlainButton';
-import Input from '../Components/Input';
+import axiosInstance from "lib/axios";
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,15 +28,15 @@ const validationSchema = Yup.object().shape({
         .required('Skill level is required')
 });
 
-const SignUp = () => {
-    const navigate = useNavigate();
+const SignUp = () => { 
+   
     const { handleSubmit, control, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
 
     const onSubmit = async (data) => {
         try {
-            const response = await axiosInstance.post('/signup', {
+            const response = await axiosInstance.post('/register/', {
                 email: data.email,
                 username: data.username,
                 password: data.password,
@@ -45,18 +44,13 @@ const SignUp = () => {
                 skill: data.skill.value
             });
 
-            if (response.status === 200) {
-                const { token } = response.data;
-                localStorage.setItem('token', token);
-                axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
-
+            if (response.status === 201) { 
                 toast.success("Successfully signed up!");
-                navigate('/board');
             } else {
-                toast.error(response.data?.message || "An error has occurred");
+                toast.error(response.data?.message || "An error has occurred while signing up");
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message || "An error has occurred");
+            toast.error(error?.response?.data?.message || "An error has occurred while signing up");
         }
     };    
 

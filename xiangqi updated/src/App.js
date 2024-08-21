@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import './App.css';
+import 'App.css';
 
 import {
   LazyHome,
@@ -9,8 +9,7 @@ import {
   LazyLandingPage,
   LazySignUp,
   LazySignIn
-} from './LazyComponent/LazyLoading.js';
-
+} from 'LazyComponent/LazyLoading.js';
 
 const App = () => {
   return (

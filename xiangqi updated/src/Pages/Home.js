@@ -2,8 +2,9 @@ import React, { useState, Suspense } from 'react';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../Components/CustomButton';
-import { LazySignIn, LazySignUp } from '../LazyComponent/LazyLoading';
+import Button from 'Components/CustomButton';
+
+import { LazySignIn, LazySignUp } from 'LazyComponent/LazyLoading';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -38,13 +39,13 @@ const Home = () => {
                     <Button 
                         label="Sign In" 
                         onClick={handelSignInClick} 
-                        className={`tab ${isSignIn ? 'selected-tab' : ''}`}
+                        className={`font-bold tab ${isSignIn ? 'selected-tab' : ''}`}
                         style={{ padding: '10px 20px', fontWeight: isSignIn ? 'bold' : 'normal' }}
                     />
                     <Button 
                         label="Sign Up" 
                         onClick={handelSignUpClick} 
-                        className={`tab ${!isSignIn ? 'selected-tab' : ''}`}
+                        className={`font-bold tab ${!isSignIn ? 'selected-tab' : ''}`}
                         style={{ padding: '10px 20px', fontWeight: !isSignIn ? 'bold' : 'normal' }}
                     />
                 </div>
