@@ -38,13 +38,13 @@ const Home = () => {
                     <Button 
                         label="Sign In" 
                         onClick={handelSignInClick} 
-                        className={`tab ${isSignIn ? 'selected-tab' : ''}`}
+                        className={`font-bold tab ${isSignIn ? 'selected-tab' : ''}`}
                         style={{ padding: '10px 20px', fontWeight: isSignIn ? 'bold' : 'normal' }}
                     />
                     <Button 
                         label="Sign Up" 
                         onClick={handelSignUpClick} 
-                        className={`tab ${!isSignIn ? 'selected-tab' : ''}`}
+                        className={`font-bold tab ${!isSignIn ? 'selected-tab' : ''}`}
                         style={{ padding: '10px 20px', fontWeight: !isSignIn ? 'bold' : 'normal' }}
                     />
                 </div>

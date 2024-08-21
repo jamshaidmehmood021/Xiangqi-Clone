@@ -11,7 +11,6 @@ import {
   LazySignIn
 } from './LazyComponent/LazyLoading.js';
 
-
 const App = () => {
   return (
     <Router>

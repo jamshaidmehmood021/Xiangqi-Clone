@@ -1,5 +1,5 @@
 body {
-    background-color: #f4f4f9;
+    background-color:  rgb(255, 251, 242);;
     margin: 0;
     height: 100vh;
     display: flex;
@@ -7,4 +7,3 @@ body {
     align-items: center;
     font-family: 'Arial', sans-serif;
   }
-  

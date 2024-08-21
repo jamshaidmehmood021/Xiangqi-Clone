@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-
 
 import axiosInstance from "../lib/axios";
 import Button from '../Components/PlainButton';
 import Input from '../Components/Input';
+import { AuthContext } from '../Context/authContext';
 
 const SignIn = () => {
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
+
     const onSubmit = async (event) => {
         event.preventDefault();
         const newErrors = {};
@@ -27,12 +28,9 @@ const SignIn = () => {
             const response = await axiosInstance.post("/token/", { username, password });
             if (response.status === 200) {
                 const { access, refresh } = response.data;
-                const user = jwtDecode(access);
-                localStorage.setItem('authTokens', JSON.stringify({ access, refresh }));
-                localStorage.setItem('user', JSON.stringify(user.username));
-
+                login({ access, refresh });
                 toast.success('Login successful!');
-                navigate('/board'); 
+                navigate('/board');
             } else {
                 toast.error('Login failed! Please check your credentials.');
             }
@@ -40,6 +38,7 @@ const SignIn = () => {
             toast.error('An error occurred during login. Please try again.');
         }
     };
+
     return (
         <>
             <form onSubmit={onSubmit} className="space-y-4">
