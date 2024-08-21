@@ -6,21 +6,24 @@ const Board = () => {
     const FEN = 'rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR';
     const board = parseFEN(FEN);
 
-    const [squareSize, setSquareSize] = useState(0);
+    const [size, setSize] = useState(0);
 
+    const calculateSizes = () => {
+        const height = window.innerHeight * 0.8;
+        const width = window.innerWidth * 0.8;
+        
+        const aspectRatio = 133 / 150;
+        let calculateHeight = height;
+        let calculatedWidth = calculateHeight * aspectRatio;
+
+        if(height > width) {
+            calculateHeight = width;
+            calculatedWidth = calculateHeight * aspectRatio;
+        }
+        
+        setSize({width: calculatedWidth, height: calculateHeight})
+    };
     useEffect(() => {
-        const calculateSizes = () => {
-            const height = window.innerHeight - 200;
-            const width = window.innerWidth - 200;
-            
-            const aspectRatio = 133 / 150;
-            const calculateHeight = height  ;
-            const calculatedWidth = height * aspectRatio;
-            
-            const size = Math.min(calculatedWidth / 9, calculateHeight / 10);
-            console.log(size);
-            setSquareSize(size);
-        };
 
         calculateSizes();
         window.addEventListener('resize', calculateSizes);
@@ -29,9 +32,7 @@ const Board = () => {
             window.removeEventListener('resize', calculateSizes);
         };
     }, []);
-
-    const backgroundSize = `${(squareSize - 8 ) * 9}px ${(squareSize - 8 )* 10}px`;
-    const backgroundPosition = `${(squareSize - 6 ) * 0.7}px ${(squareSize - 6 ) * 0.5}px`;
+    const squareSizeCalc = size.width / 10;
 
     return (
         <div id='game-area'>
@@ -39,17 +40,18 @@ const Board = () => {
                 <div
                     className="board-container"
                     style={{
-                        width: squareSize * 9,
-                        height: squareSize * 10,
-                        backgroundSize: backgroundSize,
-                        backgroundPosition: backgroundPosition,
+                        width: size.width + squareSizeCalc,
+                        height: size.height + squareSizeCalc,
+                        backgroundSize: `${size.width}px ${size.height}px`,
+                        backgroundPosition: `${squareSizeCalc / 2}px ${squareSizeCalc / 2}px`,
                     }}
                 >
                     <div className="game-grid">
                         {board.map((row, rowIndex) => (
-                            <div key={rowIndex} className="row">
+                            <div key={rowIndex} className="row" style={{height: size.height / 9}}>
                                 {row.map((piece, colIndex) => (
-                                    <div key={colIndex} className={`square ${piece ? piece : ''}`}>
+                                    <div key={colIndex} className={`square`} style={{width: (size.width + squareSizeCalc) / 9}}>
+                                        <div className={`${piece ? piece : ''}`} />
                                     </div>
                                 ))}
                             </div>
