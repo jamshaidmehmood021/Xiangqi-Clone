@@ -1,5 +1,5 @@
 .fixed-left-div {
-  width: 68px;
+  width: 75px;
   height: 100%;
   position: fixed;
   z-index: 98;
@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px 0; 
+  padding: 20px 0;
+  justify-content: flex-end;
 }
 
 .navbar-button {
@@ -31,6 +31,14 @@
   justify-content: center;
 }
 
+.welcome-text {
+  font-size: xx-large;
+}
+
+.xqdotcom {
+  color: brown;
+}
+
 .navbar-button:hover {
   background-color: #e2e6ea; 
   color: #0056b3; 
@@ -38,4 +46,59 @@
 
 .navbar-button span {
   margin-left: 8px; 
+}
+
+.profile-button-container {
+  margin-bottom: 10px; 
+}
+
+.profile-button {
+  background: transparent; 
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #007bff; 
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-button:hover {
+  background-color: #e2e6ea; 
+  color: #0056b3; 
+}
+
+.profile-icon {
+  margin-left: 0;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .fixed-left-div {
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    background: url(https://d2g1zxtf4l76di.cloudfront.net/images/red-bg.jpg) 0% 0% / cover no-repeat;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .profile-button-container {
+    margin: 0; 
+  }
+
+  .profile-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
 }
