@@ -5,16 +5,15 @@ import Row from 'Components/BoardComponents/Row';
 
 import "Components/BoardComponents/GameGrid.scss";
 
-const GameGrid = (prop) => {
-    const { board, size } = prop;
+const GameGrid = React.memo(({ board, size, onMovePiece }) => {
     return (
         <div className="game-grid">
             {board.map((row, rowIndex) => (
-                <Row key={rowIndex} row={row} rowIndex={rowIndex} size={size} />
+                <Row key={rowIndex} row={row} rowIndex={rowIndex} size={size} onMovePiece={onMovePiece} />
             ))}
         </div>
     );
-};
+});
 
 GameGrid.propTypes = {
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
@@ -22,6 +21,7 @@ GameGrid.propTypes = {
         width: PropTypes.number.isRequired,
         height: PropTypes.number.isRequired,
     }).isRequired,
+    onMovePiece: PropTypes.func.isRequired,
 };
 
 export default GameGrid;

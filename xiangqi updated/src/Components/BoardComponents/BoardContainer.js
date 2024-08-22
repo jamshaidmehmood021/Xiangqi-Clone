@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import GameGrid from 'Components/BoardComponents/GameGrid';
 
 import 'Components/BoardComponents/BoardContainer.scss';
 
-const BoardContainer = (prop) => {
-    const { size, board } = prop;
+const BoardContainer = React.memo(({ size, board: initialBoard, updateBoardState }) => {
+    const [board, setBoard] = useState(initialBoard);
+
     const squareSizeCalc = size.width / 10;
+
+    const movePiece = useCallback((fromPosition, toPosition) => {
+        console.log('Moving piece from:', fromPosition, 'to:', toPosition);
+
+        const newBoard = board.map((row, rowIndex) =>
+            row.map((piece, colIndex) => {
+                if (rowIndex === fromPosition.row && colIndex === fromPosition.col) {
+                    return '';  
+                } else if (rowIndex === toPosition.row && colIndex === toPosition.col) {
+                    return board[fromPosition.row][fromPosition.col];  
+                } else {
+                    return piece; 
+                }
+            })
+        );
+        setBoard(newBoard);
+        updateBoardState(newBoard);
+    }, [board, updateBoardState]);
 
     return (
         <div
@@ -19,10 +38,10 @@ const BoardContainer = (prop) => {
                 backgroundPosition: `${squareSizeCalc / 2}px ${squareSizeCalc / 2}px`,
             }}
         >
-            <GameGrid board={board} size={size} />
+            <GameGrid board={board} size={size} onMovePiece={movePiece} />
         </div>
     );
-};
+});
 
 BoardContainer.propTypes = {
     size: PropTypes.shape({
@@ -30,6 +49,7 @@ BoardContainer.propTypes = {
         height: PropTypes.number.isRequired,
     }).isRequired,
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+    updateBoardState: PropTypes.func.isRequired,
 };
 
 export default BoardContainer;

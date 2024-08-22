@@ -4,6 +4,10 @@
   position: relative;
   padding: 5px;
 }
+.square.dragging {
+  opacity: 0.5; 
+}
+
 
 .piece {
   font-size: 36px;

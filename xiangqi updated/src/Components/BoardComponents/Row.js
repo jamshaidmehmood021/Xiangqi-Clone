@@ -5,16 +5,22 @@ import Square from 'Components/BoardComponents/Square';
 
 import "Components/BoardComponents/Row.scss";
 
-const Row = (prop) => {
-    const { row, rowIndex, size } = prop;
+const Row = React.memo(({ row, rowIndex, size, onMovePiece }) => {
     return (
-        <div key={rowIndex} className="row" style={{ height: size.height / 9 }}>
+        <div className="row" style={{ height: size.height / 9 }}>
             {row.map((piece, colIndex) => (
-                <Square key={colIndex} piece={piece} size={size} />
+                <Square 
+                    key={colIndex} 
+                    piece={piece} 
+                    size={size} 
+                    rowIndex={rowIndex} 
+                    colIndex={colIndex} 
+                    onMovePiece={onMovePiece} 
+                />
             ))}
         </div>
     );
-};
+});
 
 Row.propTypes = {
     row: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -23,6 +29,7 @@ Row.propTypes = {
         width: PropTypes.number.isRequired,
         height: PropTypes.number.isRequired,
     }).isRequired,
+    onMovePiece: PropTypes.func.isRequired,
 };
 
 export default Row;
