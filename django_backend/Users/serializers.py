@@ -21,11 +21,10 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
-    profile_picture = serializers.ImageField(required=False, allow_null=True)  # Add this line
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password', 'country', 'skill', 'profile_picture']  
+        fields = ['username', 'email', 'password', 'country', 'skill']  
 
     def create(self, validated_data):
         user = CustomUser.objects.create(
@@ -34,6 +33,5 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             password=make_password(validated_data['password']),
             country=validated_data['country'],
             skill=validated_data['skill'],
-            profile_picture=validated_data.get('profile_picture'), 
         )
         return user
