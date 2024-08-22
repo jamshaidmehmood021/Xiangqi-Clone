@@ -6,9 +6,12 @@ import BoardContainer from 'Components/BoardComponents/BoardContainer';
 import { parseFEN } from 'Utilities/parseFEN';
 import { generateFENFromBoard } from 'Utilities/generateFENFromBoard';
 
+import "Pages/Board.scss"
+
 const Board = () => {
     const [FEN, setFEN] = useState('rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR');
     const [board, setBoard] = useState(parseFEN(FEN));
+    const [turn, setTurn] = useState('red'); 
 
     const [size, setSize] = useState({ width: 0, height: 0 });
 
@@ -43,11 +46,26 @@ const Board = () => {
         setFEN(newFEN);
     }, []);
 
+    const switchTurn = useCallback(() => {
+        setTurn(prevTurn => (prevTurn === 'red' ? 'black' : 'red'));
+    }, []);
+
     return (
         <DndProvider backend={HTML5Backend}>
             <div id='game-area'>
-                <BoardContainer size={size} board={board} updateBoardState={updateBoardState} />
+                <BoardContainer
+                    size={size}
+                    board={board}
+                    updateBoardState={updateBoardState}
+                    turn={turn}
+                    switchTurn={switchTurn}
+                />
+
+            <div className="turn-indicator">
+                <p>Current Turn: {turn}</p>
             </div>
+            </div>
+            
         </DndProvider>
     );
 };

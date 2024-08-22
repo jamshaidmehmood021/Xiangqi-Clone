@@ -5,7 +5,8 @@ import Square from 'Components/BoardComponents/Square';
 
 import "Components/BoardComponents/Row.scss";
 
-const Row = React.memo(({ row, rowIndex, size, onMovePiece }) => {
+const Row = React.memo((prop) => {
+    const { row, rowIndex, size, onMovePiece } = prop;
     return (
         <div className="row" style={{ height: size.height / 9 }}>
             {row.map((piece, colIndex) => (

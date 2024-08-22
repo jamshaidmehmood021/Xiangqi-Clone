@@ -5,7 +5,8 @@ import Row from 'Components/BoardComponents/Row';
 
 import "Components/BoardComponents/GameGrid.scss";
 
-const GameGrid = React.memo(({ board, size, onMovePiece }) => {
+const GameGrid = React.memo((prop) => {
+    const { board, size, onMovePiece } = prop;
     return (
         <div className="game-grid">
             {board.map((row, rowIndex) => (

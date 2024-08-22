@@ -5,13 +5,19 @@ import GameGrid from 'Components/BoardComponents/GameGrid';
 
 import 'Components/BoardComponents/BoardContainer.scss';
 
-const BoardContainer = React.memo(({ size, board: initialBoard, updateBoardState }) => {
+const BoardContainer = React.memo((prop) => {
+    const { size, board: initialBoard, updateBoardState, turn, switchTurn } = prop;
     const [board, setBoard] = useState(initialBoard);
 
     const squareSizeCalc = size.width / 10;
 
     const movePiece = useCallback((fromPosition, toPosition) => {
         console.log('Moving piece from:', fromPosition, 'to:', toPosition);
+
+        const piece = board[fromPosition.row][fromPosition.col];
+        if (piece === '' || !piece.startsWith(turn.charAt(0))) {
+            return;
+        }
 
         const newBoard = board.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
@@ -26,7 +32,8 @@ const BoardContainer = React.memo(({ size, board: initialBoard, updateBoardState
         );
         setBoard(newBoard);
         updateBoardState(newBoard);
-    }, [board, updateBoardState]);
+        switchTurn();
+    }, [board, turn, updateBoardState, switchTurn]);
 
     return (
         <div
@@ -50,6 +57,8 @@ BoardContainer.propTypes = {
     }).isRequired,
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
     updateBoardState: PropTypes.func.isRequired,
+    turn: PropTypes.string.isRequired,
+    switchTurn: PropTypes.func.isRequired,
 };
 
 export default BoardContainer;
