@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
 import BoardContainer from 'Components/BoardComponents/BoardContainer';
 import { parseFEN } from 'Utilities/parseFEN';
-import { generateFENFromBoard } from 'Utilities/generateFENFromBoard';
-
-import "Pages/Board.scss"
+import MessageModal from 'Components/MessageModal'; 
+import { START_FEN } from 'Utilities/startFen';
+import "Pages/Board.scss";
 
 const Board = () => {
-    const [FEN, setFEN] = useState('rnbakabnr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C5C1/9/RNBAKABNR');
-    const [board, setBoard] = useState(parseFEN(FEN));
-    const [turn, setTurn] = useState('red'); 
-
+    const [FEN, setFEN] = useState(START_FEN);
+    const { board, turn: initialTurn } = parseFEN(FEN); 
+    const [boardState, setBoardState] = useState(board);
+    const [turn, setTurn] = useState(initialTurn);
     const [size, setSize] = useState({ width: 0, height: 0 });
+    const [gameOver, setGameOver] = useState(false); 
+    const [gameResult, setGameResult] = useState(''); 
 
     const calculateSizes = useCallback(() => {
         const height = window.innerHeight * 0.8;
@@ -27,8 +28,7 @@ const Board = () => {
             calculatedHeight = width;
             calculatedWidth = calculatedHeight * aspectRatio;
         }
-        
-        setSize({ width: calculatedWidth, height: calculatedHeight });
+        setSize({ width: Math.round(calculatedWidth), height: Math.round( calculatedHeight)});
     }, []);
 
     useEffect(() => {
@@ -40,32 +40,47 @@ const Board = () => {
         };
     }, [calculateSizes]);
 
-    const updateBoardState = useCallback((newBoard) => {
-        setBoard(newBoard);
-        const newFEN = generateFENFromBoard(newBoard);
-        setFEN(newFEN);
+    const switchTurn = useCallback(() => {
+        setTurn(prevTurn => (prevTurn === 'r' ? 'b' : 'r'));
     }, []);
 
-    const switchTurn = useCallback(() => {
-        setTurn(prevTurn => (prevTurn === 'red' ? 'black' : 'red'));
-    }, []);
+   
+    const handleGameOver = useCallback((xiangqi) => {
+        if (xiangqi.game_over()) {
+            setGameOver(true);
+            if (xiangqi.in_checkmate()) {
+                setGameResult(`Checkmate! ${turn === 'r' ? 'Black' : 'Red'} wins.`);
+            } else if (xiangqi.in_stalemate()) {
+                setGameResult('Stalemate! The game is a draw.');
+            } else if (xiangqi.in_draw()) {
+                setGameResult('Draw! The game ended in a draw.');
+            }
+        }
+    }, [turn]);
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div id='game-area'>
                 <BoardContainer
+                    FEN={FEN}
+                    setFEN={setFEN}
                     size={size}
-                    board={board}
-                    updateBoardState={updateBoardState}
+                    board={boardState}
                     turn={turn}
                     switchTurn={switchTurn}
+                    handleGameOver={handleGameOver}
                 />
-
-            <div className="turn-indicator">
-                <p>Current Turn: {turn}</p>
+                <div className="turn-indicator">
+                    <p>Current Turn: {turn}</p>
+                </div>
+                
+                <MessageModal
+                    isOpen={gameOver}
+                    title="Game Over"
+                    message={gameResult}
+                    onClose={() => setGameOver(false)}
+                />
             </div>
-            </div>
-            
         </DndProvider>
     );
 };

@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Row from 'Components/BoardComponents/Row';
+import { UCIMapping } from 'Utilities/UCIMapping';
 
 import "Components/BoardComponents/GameGrid.scss";
 
-const GameGrid = React.memo((prop) => {
-    const { board, size, onMovePiece } = prop;
+const GameGrid = React.memo((props) => {
+    const { FEN, board, size, onMovePiece, selectedPiece, availableMoves, onSquareClick } = props;
+
     return (
-        <div className="game-grid">
+        <>
             {board.map((row, rowIndex) => (
-                <Row key={rowIndex} row={row} rowIndex={rowIndex} size={size} onMovePiece={onMovePiece} />
+                <Row 
+                    FEN={FEN}
+                    key={rowIndex} 
+                    row={row} 
+                    rowIndex={rowIndex} 
+                    size={size} 
+                    onMovePiece={onMovePiece} 
+                    selectedPiece={selectedPiece} 
+                    availableMoves={availableMoves} 
+                    UCIMapping={UCIMapping[rowIndex]} 
+                    onSquareClick={onSquareClick} 
+                />
             ))}
-        </div>
+       </>
     );
 });
 
@@ -23,6 +35,12 @@ GameGrid.propTypes = {
         height: PropTypes.number.isRequired,
     }).isRequired,
     onMovePiece: PropTypes.func.isRequired,
+    selectedPiece: PropTypes.object,
+    availableMoves: PropTypes.arrayOf(PropTypes.shape({
+        row: PropTypes.number.isRequired,
+        col: PropTypes.number.isRequired,
+    })).isRequired, 
+    onSquareClick: PropTypes.func.isRequired,
 };
 
 export default GameGrid;
