@@ -1,0 +1,1739 @@
+{
+  "v": "5.7.13",
+  "fr": 60,
+  "ip": 0,
+  "op": 38,
+  "w": 600,
+  "h": 600,
+  "nm": "Check_faster_2",
+  "ddd": 0,
+  "assets": [
+    {
+      "id": "image_0",
+      "w": 600,
+      "h": 600,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    },
+    {
+      "id": "image_1",
+      "w": 600,
+      "h": 600,
+      "u": "",
+      "p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYBAMAAABMSIXvAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAD1BMVEVHcEygBv+fAP/Dff/27f8aEkW0AAAAA3RSTlMA+ExZeaLQAAABF0lEQVR42u3YsQ2AMAxFQWACTBaAEZAZIfvPRCRaChfQ3Y3wpB8lmSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAF8uuQdURsalQbqVWdYPRMs+wxIo5cohVicoK29V7nnZYEdmHDCXE+vh8F0ssMxTL1cGl1An/PHeE8JD+o5ZW9SX6cgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABe3XOpEfdqKvXdAAAAAElFTkSuQmCC",
+      "e": 1
+    },
+    {
+      "id": "comp_0",
+      "nm": "Check",
+      "layers": [
+        {
+          "ddd": 0,
+          "ind": 1,
+          "ty": 2,
+          "nm": "Purple_ring.ai",
+          "cl": "ai",
+          "refId": "image_0",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 89,
+                  "s": [0]
+                },
+                { "t": 100, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 0, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "ip": 29,
+          "op": 149,
+          "st": 29,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 3,
+          "ty": 0,
+          "nm": "ring",
+          "refId": "comp_1",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 98,
+                  "s": [100]
+                },
+                { "t": 109, "s": [0] }
+              ],
+              "ix": 11
+            },
+            "r": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 30,
+                  "s": [0]
+                },
+                { "t": 119, "s": [-1080] }
+              ],
+              "ix": 10
+            },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 0,
+          "op": 120,
+          "st": 0,
+          "bm": 0
+        }
+      ]
+    },
+    {
+      "id": "comp_1",
+      "nm": "ring",
+      "layers": [
+        {
+          "ddd": 0,
+          "ind": 1,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 41,
+                  "s": [0]
+                },
+                { "t": 47, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 351, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 41,
+          "op": 161,
+          "st": 41,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 2,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 40,
+                  "s": [0]
+                },
+                { "t": 46, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 342, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 40,
+          "op": 160,
+          "st": 40,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 3,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 39,
+                  "s": [0]
+                },
+                { "t": 45, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 333, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 39,
+          "op": 159,
+          "st": 39,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 4,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 38,
+                  "s": [0]
+                },
+                { "t": 44, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 324, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 38,
+          "op": 158,
+          "st": 38,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 5,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 37,
+                  "s": [0]
+                },
+                { "t": 43, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 315, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 37,
+          "op": 157,
+          "st": 37,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 6,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 36,
+                  "s": [0]
+                },
+                { "t": 42, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 306, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 36,
+          "op": 156,
+          "st": 36,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 7,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 35,
+                  "s": [0]
+                },
+                { "t": 41, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 297, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 35,
+          "op": 155,
+          "st": 35,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 8,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 34,
+                  "s": [0]
+                },
+                { "t": 40, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 288, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 34,
+          "op": 154,
+          "st": 34,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 9,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 33,
+                  "s": [0]
+                },
+                { "t": 39, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 279, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 33,
+          "op": 153,
+          "st": 33,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 10,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 32,
+                  "s": [0]
+                },
+                { "t": 38, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 270, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 32,
+          "op": 152,
+          "st": 32,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 11,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 31,
+                  "s": [0]
+                },
+                { "t": 37, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 261, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 31,
+          "op": 151,
+          "st": 31,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 12,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 30,
+                  "s": [0]
+                },
+                { "t": 36, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 252, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 30,
+          "op": 150,
+          "st": 30,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 13,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 29,
+                  "s": [0]
+                },
+                { "t": 35, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 243, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 29,
+          "op": 149,
+          "st": 29,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 14,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 28,
+                  "s": [0]
+                },
+                { "t": 34, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 234, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 28,
+          "op": 148,
+          "st": 28,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 15,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 27,
+                  "s": [0]
+                },
+                { "t": 33, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 225, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 27,
+          "op": 147,
+          "st": 27,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 16,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 26,
+                  "s": [0]
+                },
+                { "t": 32, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 216, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 26,
+          "op": 146,
+          "st": 26,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 17,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 25,
+                  "s": [0]
+                },
+                { "t": 31, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 207, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 25,
+          "op": 145,
+          "st": 25,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 18,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 24,
+                  "s": [0]
+                },
+                { "t": 30, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 198, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 24,
+          "op": 144,
+          "st": 24,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 19,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 23,
+                  "s": [0]
+                },
+                { "t": 29, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 189, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 23,
+          "op": 143,
+          "st": 23,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 20,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 22,
+                  "s": [0]
+                },
+                { "t": 28, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 180, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 22,
+          "op": 142,
+          "st": 22,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 21,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 21,
+                  "s": [0]
+                },
+                { "t": 27, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 171, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 21,
+          "op": 141,
+          "st": 21,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 22,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 20,
+                  "s": [0]
+                },
+                { "t": 26, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 162, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 20,
+          "op": 140,
+          "st": 20,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 23,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 19,
+                  "s": [0]
+                },
+                { "t": 25, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 153, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 19,
+          "op": 139,
+          "st": 19,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 24,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 18,
+                  "s": [0]
+                },
+                { "t": 24, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 144, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 18,
+          "op": 138,
+          "st": 18,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 25,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 17,
+                  "s": [0]
+                },
+                { "t": 23, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 135, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 17,
+          "op": 137,
+          "st": 17,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 26,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 16,
+                  "s": [0]
+                },
+                { "t": 22, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 126, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 16,
+          "op": 136,
+          "st": 16,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 27,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 15,
+                  "s": [0]
+                },
+                { "t": 21, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 117, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 15,
+          "op": 135,
+          "st": 15,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 28,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 14,
+                  "s": [0]
+                },
+                { "t": 20, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 108, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 14,
+          "op": 134,
+          "st": 14,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 29,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 13,
+                  "s": [0]
+                },
+                { "t": 19, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 99, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 13,
+          "op": 133,
+          "st": 13,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 30,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 11,
+                  "s": [0]
+                },
+                { "t": 17, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 90, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 11,
+          "op": 131,
+          "st": 11,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 31,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 10,
+                  "s": [0]
+                },
+                { "t": 16, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 81, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 10,
+          "op": 130,
+          "st": 10,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 32,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 9,
+                  "s": [0]
+                },
+                { "t": 15, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 72, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 9,
+          "op": 129,
+          "st": 9,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 33,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 8,
+                  "s": [0]
+                },
+                { "t": 14, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 63, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 8,
+          "op": 128,
+          "st": 8,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 34,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 7,
+                  "s": [0]
+                },
+                { "t": 13, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 54, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 7,
+          "op": 127,
+          "st": 7,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 35,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 6,
+                  "s": [0]
+                },
+                { "t": 12, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 45, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 6,
+          "op": 126,
+          "st": 6,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 36,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 5,
+                  "s": [0]
+                },
+                { "t": 11, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 36, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 5,
+          "op": 125,
+          "st": 5,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 37,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 4,
+                  "s": [0]
+                },
+                { "t": 10, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 27, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 4,
+          "op": 124,
+          "st": 4,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 38,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 3,
+                  "s": [0]
+                },
+                { "t": 9, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 18, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 3,
+          "op": 123,
+          "st": 3,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 39,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 2,
+                  "s": [0]
+                },
+                { "t": 8, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 9, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 2,
+          "op": 122,
+          "st": 2,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 40,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 1,
+                  "s": [0]
+                },
+                { "t": 7, "s": [100] }
+              ],
+              "ix": 11
+            },
+            "r": { "a": 0, "k": 0, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 1,
+          "op": 121,
+          "st": 1,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 41,
+          "ty": 0,
+          "nm": "starmovement and such",
+          "refId": "comp_2",
+          "sr": 1,
+          "ks": {
+            "o": { "a": 0, "k": 100, "ix": 11 },
+            "r": { "a": 0, "k": 0, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "w": 600,
+          "h": 600,
+          "ip": 0,
+          "op": 120,
+          "st": 0,
+          "bm": 0
+        }
+      ]
+    },
+    {
+      "id": "comp_2",
+      "nm": "starmovement and such",
+      "layers": [
+        {
+          "ddd": 0,
+          "ind": 1,
+          "ty": 3,
+          "nm": "Null 1",
+          "sr": 1,
+          "ks": {
+            "o": { "a": 0, "k": 0, "ix": 11 },
+            "r": { "a": 0, "k": 0, "ix": 10 },
+            "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+            "a": { "a": 0, "k": [0, 0, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "ip": 0,
+          "op": 120,
+          "st": 0,
+          "bm": 0
+        },
+        {
+          "ddd": 0,
+          "ind": 2,
+          "ty": 2,
+          "nm": "star.ai",
+          "cl": "ai",
+          "refId": "image_1",
+          "sr": 1,
+          "ks": {
+            "o": { "a": 0, "k": 100, "ix": 11 },
+            "r": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": [0.833], "y": [0.833] },
+                  "o": { "x": [0.167], "y": [0.167] },
+                  "t": 0,
+                  "s": [45]
+                },
+                { "t": 30, "s": [-90] }
+              ],
+              "ix": 10
+            },
+            "p": {
+              "a": 1,
+              "k": [
+                {
+                  "i": { "x": 0.833, "y": 0.833 },
+                  "o": { "x": 0.167, "y": 0.167 },
+                  "t": 0,
+                  "s": [300, 300, 0],
+                  "to": [12.667, -0.667, 0],
+                  "ti": [-12.667, 0.667, 0]
+                },
+                { "t": 30, "s": [376, 296, 0] }
+              ],
+              "ix": 2,
+              "l": 2
+            },
+            "a": { "a": 0, "k": [304.243, 506.515, 0], "ix": 1, "l": 2 },
+            "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+          },
+          "ao": 0,
+          "ef": [
+            {
+              "ty": 5,
+              "nm": "Glow",
+              "np": 16,
+              "mn": "ADBE Glo2",
+              "ix": 1,
+              "en": 1,
+              "ef": [
+                {
+                  "ty": 7,
+                  "nm": "Glow Based On",
+                  "mn": "ADBE Glo2-0001",
+                  "ix": 1,
+                  "v": { "a": 0, "k": 2, "ix": 1 }
+                },
+                {
+                  "ty": 0,
+                  "nm": "Glow Threshold",
+                  "mn": "ADBE Glo2-0002",
+                  "ix": 2,
+                  "v": {
+                    "a": 1,
+                    "k": [
+                      {
+                        "i": { "x": [0.833], "y": [0.833] },
+                        "o": { "x": [0.167], "y": [0.167] },
+                        "t": 0,
+                        "s": [255]
+                      },
+                      { "t": 3, "s": [0] }
+                    ],
+                    "ix": 2,
+                    "x": "var $bm_rt;\n$bm_rt = loopOut('pingpong');"
+                  }
+                },
+                {
+                  "ty": 0,
+                  "nm": "Glow Radius",
+                  "mn": "ADBE Glo2-0003",
+                  "ix": 3,
+                  "v": {
+                    "a": 1,
+                    "k": [
+                      {
+                        "i": { "x": [0.833], "y": [0.833] },
+                        "o": { "x": [0.167], "y": [0.167] },
+                        "t": 0,
+                        "s": [55.507]
+                      },
+                      { "t": 3, "s": [12.775] }
+                    ],
+                    "ix": 3,
+                    "x": "var $bm_rt;\n$bm_rt = loopOut('pingpong');"
+                  }
+                },
+                {
+                  "ty": 0,
+                  "nm": "Glow Intensity",
+                  "mn": "ADBE Glo2-0004",
+                  "ix": 4,
+                  "v": { "a": 0, "k": 1, "ix": 4 }
+                },
+                {
+                  "ty": 7,
+                  "nm": "Composite Original",
+                  "mn": "ADBE Glo2-0005",
+                  "ix": 5,
+                  "v": { "a": 0, "k": 2, "ix": 5 }
+                },
+                {
+                  "ty": 7,
+                  "nm": "Glow Operation",
+                  "mn": "ADBE Glo2-0006",
+                  "ix": 6,
+                  "v": { "a": 0, "k": 3, "ix": 6 }
+                },
+                {
+                  "ty": 7,
+                  "nm": "Glow Colors",
+                  "mn": "ADBE Glo2-0007",
+                  "ix": 7,
+                  "v": { "a": 0, "k": 1, "ix": 7 }
+                },
+                {
+                  "ty": 7,
+                  "nm": "Color Looping",
+                  "mn": "ADBE Glo2-0008",
+                  "ix": 8,
+                  "v": { "a": 0, "k": 3, "ix": 8 }
+                },
+                {
+                  "ty": 0,
+                  "nm": "Color Loops",
+                  "mn": "ADBE Glo2-0009",
+                  "ix": 9,
+                  "v": { "a": 0, "k": 1, "ix": 9 }
+                },
+                {
+                  "ty": 0,
+                  "nm": "Color Phase",
+                  "mn": "ADBE Glo2-0010",
+                  "ix": 10,
+                  "v": { "a": 0, "k": 0, "ix": 10 }
+                },
+                {
+                  "ty": 0,
+                  "nm": "A & B Midpoint",
+                  "mn": "ADBE Glo2-0011",
+                  "ix": 11,
+                  "v": { "a": 0, "k": 0.5, "ix": 11 }
+                },
+                {
+                  "ty": 2,
+                  "nm": "Color A",
+                  "mn": "ADBE Glo2-0012",
+                  "ix": 12,
+                  "v": {
+                    "a": 0,
+                    "k": [0.592374503613, 0.17605535686, 0.831372559071, 1],
+                    "ix": 12
+                  }
+                },
+                {
+                  "ty": 2,
+                  "nm": "Color B",
+                  "mn": "ADBE Glo2-0013",
+                  "ix": 13,
+                  "v": { "a": 0, "k": [0, 0, 0, 0], "ix": 13 }
+                },
+                {
+                  "ty": 7,
+                  "nm": "Glow Dimensions",
+                  "mn": "ADBE Glo2-0014",
+                  "ix": 14,
+                  "v": { "a": 0, "k": 1, "ix": 14 }
+                }
+              ]
+            }
+          ],
+          "ip": 0,
+          "op": 120,
+          "st": 0,
+          "bm": 0
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 0,
+      "nm": "Check",
+      "refId": "comp_0",
+      "sr": 0.32,
+      "ks": {
+        "o": { "a": 0, "k": 100, "ix": 11 },
+        "r": { "a": 0, "k": 0, "ix": 10 },
+        "p": { "a": 0, "k": [300, 300, 0], "ix": 2, "l": 2 },
+        "a": { "a": 0, "k": [300, 300, 0], "ix": 1, "l": 2 },
+        "s": { "a": 0, "k": [100, 100, 100], "ix": 6, "l": 2 }
+      },
+      "ao": 0,
+      "w": 600,
+      "h": 600,
+      "ip": 0,
+      "op": 38,
+      "st": 0,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}
