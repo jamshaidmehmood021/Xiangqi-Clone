@@ -6,7 +6,7 @@ import { UCIMapping } from 'Utilities/UCIMapping';
 import "Components/BoardComponents/GameGrid.scss";
 
 const GameGrid = React.memo((props) => {
-    const { FEN, board, size, onMovePiece, selectedPiece, availableMoves, onSquareClick } = props;
+    const { FEN, board, size, onMovePiece, selectedPiece, availableMoves, onSquareClick, onDragStart } = props;
 
     return (
         <>
@@ -22,6 +22,7 @@ const GameGrid = React.memo((props) => {
                     availableMoves={availableMoves} 
                     UCIMapping={UCIMapping[rowIndex]} 
                     onSquareClick={onSquareClick} 
+                    onDragStart={onDragStart} 
                 />
             ))}
        </>
@@ -30,10 +31,7 @@ const GameGrid = React.memo((props) => {
 
 GameGrid.propTypes = {
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-    size: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired,
+    size: PropTypes.number.isRequired,
     onMovePiece: PropTypes.func.isRequired,
     selectedPiece: PropTypes.object,
     availableMoves: PropTypes.arrayOf(PropTypes.shape({
@@ -41,6 +39,7 @@ GameGrid.propTypes = {
         col: PropTypes.number.isRequired,
     })).isRequired, 
     onSquareClick: PropTypes.func.isRequired,
+    onDragStart: PropTypes.func.isRequired, 
 };
 
 export default GameGrid;

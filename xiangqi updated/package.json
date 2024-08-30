@@ -21,12 +21,16 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.2",
     "react-loading-icons": "^1.1.0",
+    "react-lottie": "^1.2.4",
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
+    "react-websocket": "^2.1.0",
     "sass": "^1.77.8",
+    "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4",
+    "websocket": "^1.0.35",
     "yup": "^1.4.0"
   },
   "scripts": {

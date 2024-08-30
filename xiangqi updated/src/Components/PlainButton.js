@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ type = 'button', className, onClick, children }) => (
+const Button = ({ type = 'button', className= "", onClick= ()=>{}, children }) => (
     <button
         type={type}
         className={`w-full text-white py-2 rounded-md bg-red-700 ${className}`}
@@ -17,11 +17,4 @@ Button.propTypes = {
     onClick: PropTypes.func,
     children: PropTypes.node.isRequired,
 };
-
-Button.defaultProps = {
-    type: 'button',
-    className: '',
-    onClick: () => {},
-};
-
 export default Button;

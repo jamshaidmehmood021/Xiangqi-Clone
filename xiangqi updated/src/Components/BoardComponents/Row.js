@@ -5,7 +5,7 @@ import Square from 'Components/BoardComponents/Square';
 import "Components/BoardComponents/Row.scss";
 
 const Row = React.memo((props) => {
-    const { FEN, row, rowIndex, size, onMovePiece, selectedPiece, availableMoves, UCIMapping, onSquareClick } = props;
+    const { FEN, row, rowIndex, size, onMovePiece, selectedPiece, availableMoves, UCIMapping, onSquareClick, onDragStart } = props;
 
     return (
         <div className="row">
@@ -25,6 +25,7 @@ const Row = React.memo((props) => {
                         isSelected={isSelected} 
                         UCIMapping={UCIMapping[colIndex]} 
                         onSquareClick={onSquareClick} 
+                        onDragStart={onDragStart} 
                         isHighlight={isHighlight} 
                         availableMoves={availableMoves} 
                     />
@@ -37,10 +38,7 @@ const Row = React.memo((props) => {
 Row.propTypes = {
     row: PropTypes.arrayOf(PropTypes.string).isRequired,
     rowIndex: PropTypes.number.isRequired,
-    size: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired,
+    size: PropTypes.number.isRequired,
     onMovePiece: PropTypes.func.isRequired,
     selectedPiece: PropTypes.object,
     availableMoves: PropTypes.arrayOf(PropTypes.shape({
@@ -49,6 +47,8 @@ Row.propTypes = {
     })).isRequired,
     UCIMapping: PropTypes.arrayOf(PropTypes.string).isRequired,
     onSquareClick: PropTypes.func.isRequired,
+    onDragStart: PropTypes.func.isRequired,
 };
 
 export default Row;
+

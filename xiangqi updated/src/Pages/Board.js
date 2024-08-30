@@ -1,34 +1,45 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import BoardContainer from 'Components/BoardComponents/BoardContainer';
+import MessageModal from 'Components/MessageModal';
+import Animation from 'Components/Animations/Animation';
+
 import { parseFEN } from 'Utilities/parseFEN';
-import MessageModal from 'Components/MessageModal'; 
 import { START_FEN } from 'Utilities/startFen';
 import "Pages/Board.scss";
 
 const Board = () => {
+    const { game_id } = useParams(); 
     const [FEN, setFEN] = useState(START_FEN);
-    const { board, turn: initialTurn } = parseFEN(FEN); 
+    const { board } = parseFEN(FEN);
     const [boardState, setBoardState] = useState(board);
-    const [turn, setTurn] = useState(initialTurn);
-    const [size, setSize] = useState({ width: 0, height: 0 });
-    const [gameOver, setGameOver] = useState(false); 
-    const [gameResult, setGameResult] = useState(''); 
+    const [turn, setTurn] = useState(parseFEN(FEN).turn); 
+    const [size, setSize] = useState(0);
+    const [gameOver, setGameOver] = useState(false);
+    const [gameResult, setGameResult] = useState('');
+    const [ws, setWs] = useState(null);
+    const [animationType, setAnimationType] = useState(''); 
+
+    const switchTurn = useCallback(() => {
+        setTurn(prevTurn => (prevTurn === 'r' ? 'b' : 'r'));
+    }, []);
 
     const calculateSizes = useCallback(() => {
-        const height = window.innerHeight * 0.8;
-        const width = window.innerWidth * 0.8;
-        
-        const aspectRatio = 133 / 150;
-        let calculatedHeight = height;
-        let calculatedWidth = calculatedHeight * aspectRatio;
-
-        if (height > width) {
-            calculatedHeight = width;
-            calculatedWidth = calculatedHeight * aspectRatio;
+        let width, height;
+    
+        if (window.innerWidth <= 768) {
+            height = window.innerHeight * 1;
+            width = window.innerWidth * 1;
+        } else {
+            height = window.innerHeight * 0.8;
+            width = window.innerWidth * 0.8;
         }
-        setSize({ width: Math.round(calculatedWidth), height: Math.round( calculatedHeight)});
+    
+        const squareSize = width < height ? width / 10 : height / 10;
+        setSize(Math.round(squareSize));
     }, []);
 
     useEffect(() => {
@@ -40,23 +51,50 @@ const Board = () => {
         };
     }, [calculateSizes]);
 
-    const switchTurn = useCallback(() => {
-        setTurn(prevTurn => (prevTurn === 'r' ? 'b' : 'r'));
-    }, []);
+    useEffect(() => {
+        if (!game_id) return;
 
-   
+        const websocket = new WebSocket(`ws://localhost:8001/ws/game/${game_id}/`);
+        
+        websocket.onopen = () => console.log('WebSocket connection established.');
+        websocket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'move') {
+                setBoardState(data.boardUpdate);
+                setFEN(data.FEN);
+                setTurn(data.turn); 
+            }
+        };
+        websocket.onclose = () => console.log('WebSocket connection closed.');
+        setWs(websocket);
+
+        return () => {
+            websocket.close();
+        };
+    }, [game_id]);
+
     const handleGameOver = useCallback((xiangqi) => {
         if (xiangqi.game_over()) {
             setGameOver(true);
+            let resultMessage = '';
+            let animationType = ''; 
+    
             if (xiangqi.in_checkmate()) {
-                setGameResult(`Checkmate! ${turn === 'r' ? 'Black' : 'Red'} wins.`);
+                resultMessage = `Checkmate! ${turn === 'r' ? 'Black' : 'Red'} wins.`;
+                animationType = 'checkmate'; 
             } else if (xiangqi.in_stalemate()) {
-                setGameResult('Stalemate! The game is a draw.');
+                resultMessage = 'Stalemate! The game is a draw.';
+                animationType = 'stalemate'; 
             } else if (xiangqi.in_draw()) {
-                setGameResult('Draw! The game ended in a draw.');
+                resultMessage = 'Draw! The game ended in a draw.';
+                animationType = 'draw'; 
             }
+    
+            setGameResult(resultMessage);
+            setAnimationType(animationType); 
         }
     }, [turn]);
+    
 
     return (
         <DndProvider backend={HTML5Backend}>
@@ -69,9 +107,11 @@ const Board = () => {
                     turn={turn}
                     switchTurn={switchTurn}
                     handleGameOver={handleGameOver}
+                    gameId={game_id}
+                    ws={ws}
                 />
                 <div className="turn-indicator">
-                    <p>Current Turn: {turn}</p>
+                    <p>Current Turn: {turn === 'r' ? 'Red' : 'Black'}</p>
                 </div>
                 
                 <MessageModal
@@ -80,6 +120,16 @@ const Board = () => {
                     message={gameResult}
                     onClose={() => setGameOver(false)}
                 />
+
+                {gameOver && animationType && (
+                <Animation
+                    type={animationType}
+                    options={{}}
+                    width={`${size * 9}px`} 
+                    height={`${size * 10}px`}
+                    customStyle={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                />
+                )}
             </div>
         </DndProvider>
     );

@@ -1,28 +1,47 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import GameGrid from 'Components/BoardComponents/GameGrid';
-
 import { Xiangqi } from 'Utilities/xiangqi';
 import { UCIToIndex } from 'Utilities/UCIToIndex';
-import { indexToUCI } from "Utilities/IndexToUCI";
+import { indexToUCI } from 'Utilities/IndexToUCI';
 import { UCIMapping } from 'Utilities/UCIMapping';
-
 import 'Components/BoardComponents/BoardContainer.scss';
 
 const BoardContainer = React.memo((props) => {
+    const { FEN, setFEN, size, board: initialBoard, turn, switchTurn, handleGameOver, ws } = props;
     const game = new Xiangqi();
-    
-
-    const { FEN, setFEN, size, board: initialBoard, turn, switchTurn,handleGameOver } = props;
-    //game.load(FEN);
-    //handleGameOver(game); 
-
     const [board, setBoard] = useState(initialBoard);
     const [selectedPiece, setSelectedPiece] = useState(null);
     const [availableMoves, setAvailableMoves] = useState([]);
 
-    const squareSizeCalc = size.width / 10;
+    useEffect(() => {
+        game.load(FEN);
+        const currentTurn = game.turn(); 
+        if (turn !== currentTurn) {
+            switchTurn(); 
+        }
+    }, [FEN, turn, switchTurn, game]);
+
+    useEffect(() => {
+        if (!ws) return;
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'move') {
+                setBoard(data.boardUpdate);
+                setFEN(data.FEN);
+                setAvailableMoves([]); 
+                setSelectedPiece(null);
+                if (data.turn) {
+                    switchTurn(); 
+                }
+            }
+        };
+
+        return () => {
+            ws.onmessage = null;
+        };
+    }, [ws, setFEN, switchTurn]);
 
     const movePiece = useCallback((fromPosition, toPosition) => {
         if (fromPosition.row === toPosition.row && fromPosition.col === toPosition.col) {
@@ -36,11 +55,11 @@ const BoardContainer = React.memo((props) => {
         if (targetPiece && targetPiece.startsWith(turn.charAt(0))) {
             return;
         }
-        
+    
         const newBoard = board.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
                 if (rowIndex === fromPosition.row && colIndex === fromPosition.col) {
-                    return ''; 
+                    return '';
                 } else if (rowIndex === toPosition.row && colIndex === toPosition.col) {
                     return board[fromPosition.row][fromPosition.col];
                 } else {
@@ -50,19 +69,29 @@ const BoardContainer = React.memo((props) => {
         );
     
         const UCIMove = UCIMapping[fromPosition.row][fromPosition.col] + UCIMapping[toPosition.row][toPosition.col];
-        
+    
         game.load(FEN);
         game.move(UCIMove);
         const newFEN = game.fen();
         setFEN(newFEN);
     
         setBoard(newBoard);
-        switchTurn();
         setSelectedPiece(null);
         setAvailableMoves([]);
-        handleGameOver(game)
-    }, [board, turn, switchTurn, FEN]);
+        handleGameOver(game);
     
+        if (ws) {
+            const data = {
+                type: 'move',
+                from: fromPosition,
+                to: toPosition,
+                FEN: newFEN,
+                boardUpdate: newBoard,
+                turn: turn === 'r' ? 'b' : 'r' 
+            };
+            ws.send(JSON.stringify(data));
+        }
+    }, [board, turn, switchTurn, FEN, ws, game, handleGameOver, setFEN]);
 
     const handleSquareClick = useCallback((position) => {
         if (!position) {
@@ -99,16 +128,30 @@ const BoardContainer = React.memo((props) => {
         } else {
             console.log("Not the correct turn for this piece color or no piece selected.");
         }
-    }, [FEN, movePiece, selectedPiece, board, turn, availableMoves]);
-    
+    }, [FEN, movePiece, selectedPiece, board, turn, availableMoves, game]);
+
+    const showPieceMoves = (row, col) => {
+        const position = { row, col };
+        const pieceUCI = indexToUCI(position);    
+        game.load(FEN);
+        const moves = game.moves();
+        const filteredMoves = moves.filter(move => move.startsWith(pieceUCI));
+        return filteredMoves.map(move => UCIToIndex(move.slice(2)));
+    };
+
+    const handleDragStart = (position) => {
+        const moves = showPieceMoves(position.row, position.col);
+        setAvailableMoves(moves);
+    };
+
     return (
         <div
             className="board-container"
             style={{
-                width: size.width + squareSizeCalc,
-                height: size.height + squareSizeCalc,
-                backgroundSize: `${size.width}px ${size.height}px`,
-                backgroundPosition: `${squareSizeCalc / 2}px ${squareSizeCalc / 2}px`,
+                width: size * 9,
+                height: size * 10,
+                backgroundSize: `${((size * 9) - size)}px ${((size * 10) - size)}px`,
+                backgroundPosition: `${size / 2}px ${size / 2}px`,
             }}
         >
             <GameGrid 
@@ -119,21 +162,21 @@ const BoardContainer = React.memo((props) => {
                 selectedPiece={selectedPiece} 
                 availableMoves={availableMoves}
                 onSquareClick={handleSquareClick} 
+                onDragStart={handleDragStart}
             />
         </div>
     );
 });
 
 BoardContainer.propTypes = {
-    size: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }).isRequired,
+    size: PropTypes.number.isRequired,
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
     turn: PropTypes.string.isRequired,
     switchTurn: PropTypes.func.isRequired,
     FEN: PropTypes.string.isRequired,
     setFEN: PropTypes.func.isRequired,
+    gameId: PropTypes.number,
+    ws: PropTypes.object,
 };
 
 export default BoardContainer;

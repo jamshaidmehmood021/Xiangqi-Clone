@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Button = (prop) => {
-    const { label, icon, onClick, className, style, type, iconClassName } = prop;
+    const { label, icon, onClick, className= 'w-12 h-12', style, type='button', iconClassName= 'text-xl'} = prop;
     return (
         <button
             type={type}
@@ -25,12 +25,6 @@ Button.propTypes = {
     style: PropTypes.object,
     type: PropTypes.oneOf(['button', 'submit', 'reset']),
     iconClassName: PropTypes.string,
-};
-
-Button.defaultProps = {
-    type: 'button',
-    className: 'w-12 h-12',
-    iconClassName: 'text-xl',
 };
 
 export default Button;
