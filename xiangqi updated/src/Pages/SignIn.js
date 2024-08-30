@@ -7,9 +7,6 @@ import Input from 'Components/Input';
 import { AuthContext } from 'Context/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { jwtDecode } from 'jwt-decode';
-
-
 const SignIn = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
@@ -33,38 +30,15 @@ const SignIn = () => {
             const response = await axiosInstance.post('/login/', { username_or_email: usernameOrEmail, password });
             if (response.status === 200) {
                 const { access, refresh } = response.data;
-                const decodedToken = jwtDecode(access); 
-                const user = decodedToken.user_id; 
                 login(access, refresh);
                 toast.success('Login successful!');
 
-                await checkOrCreateOrUpdateGame(user); 
+                navigate('/board');
             } else {
                 toast.error('Login failed! Please check your credentials.');
             }
         } catch (e) {
             toast.error('An error occurred during login. Please try again.');
-        }
-    };
-
-    const checkOrCreateOrUpdateGame = async (username) => {
-        try {
-            const response = await axiosInstance.get('/games/');
-            const games = response.data;
-            const availableGame = games.find(game =>
-                game.player1 !== username && game.player2 !== username
-            );
-
-            if (availableGame) {
-                navigate('/game', { state: { games } });
-            } else {
-                const newGameResponse = await axiosInstance.post('/game/', { player1: username });
-                const { id } = newGameResponse.data;
-                toast.success('New game created successfully!');
-                navigate(`/board/${id}`);  
-            }
-        } catch (e) {
-            toast.error('An error occurred while checking or creating/updating a game.');
         }
     };
 

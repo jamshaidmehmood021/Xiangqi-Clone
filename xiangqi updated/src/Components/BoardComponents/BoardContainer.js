@@ -1,18 +1,25 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import GameGrid from 'Components/BoardComponents/GameGrid';
+import Animation from 'Components/Animations/Animation'; 
+import { CHECKMATE } from 'Components/Animations/constants/constants';
+
 import { Xiangqi } from 'Utilities/xiangqi';
 import { UCIToIndex } from 'Utilities/UCIToIndex';
 import { indexToUCI } from 'Utilities/IndexToUCI';
 import { UCIMapping } from 'Utilities/UCIMapping';
+ 
 import 'Components/BoardComponents/BoardContainer.scss';
 
 const BoardContainer = React.memo((props) => {
-    const { FEN, setFEN, size, board: initialBoard, turn, switchTurn, handleGameOver, ws } = props;
+    const { FEN, setFEN, size, board: initialBoard, turn, switchTurn, handleGameOver } = props;
     const game = new Xiangqi();
     const [board, setBoard] = useState(initialBoard);
     const [selectedPiece, setSelectedPiece] = useState(null);
     const [availableMoves, setAvailableMoves] = useState([]);
+    const [animation, setAnimation] = useState(null); 
+    const [animationPosition, setAnimationPosition] = useState({ row: 0, col: 0 }); 
 
     useEffect(() => {
         game.load(FEN);
@@ -21,27 +28,6 @@ const BoardContainer = React.memo((props) => {
             switchTurn(); 
         }
     }, [FEN, turn, switchTurn, game]);
-
-    useEffect(() => {
-        if (!ws) return;
-
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            if (data.type === 'move') {
-                setBoard(data.boardUpdate);
-                setFEN(data.FEN);
-                setAvailableMoves([]); 
-                setSelectedPiece(null);
-                if (data.turn) {
-                    switchTurn(); 
-                }
-            }
-        };
-
-        return () => {
-            ws.onmessage = null;
-        };
-    }, [ws, setFEN, switchTurn]);
 
     const movePiece = useCallback((fromPosition, toPosition) => {
         if (fromPosition.row === toPosition.row && fromPosition.col === toPosition.col) {
@@ -79,20 +65,29 @@ const BoardContainer = React.memo((props) => {
         setSelectedPiece(null);
         setAvailableMoves([]);
         handleGameOver(game);
-    
-        if (ws) {
-            const data = {
-                type: 'move',
-                from: fromPosition,
-                to: toPosition,
-                FEN: newFEN,
-                boardUpdate: newBoard,
-                turn: turn === 'r' ? 'b' : 'r' 
-            };
-            ws.send(JSON.stringify(data));
-        }
-    }, [board, turn, switchTurn, FEN, ws, game, handleGameOver, setFEN]);
+        
+        if (game.in_checkmate()) {
+            setAnimation(CHECKMATE);
 
+            let opponentKing = turn === 'r' ? 'b_general' : 'r_general'; 
+            let kingPosition = { row: 0, col: 0 };
+    
+            
+            for (let row = 0; row < board.length; row++) {
+                for (let col = 0; col < board[row].length; col++) {
+                    if (board[row][col] === opponentKing) {
+                        kingPosition = { row, col };
+                        break;
+                    }
+                }
+            }
+    
+            setAnimationPosition(kingPosition); 
+        }
+    }, [board, turn, switchTurn, FEN, game, handleGameOver, setFEN]);
+
+    console.log(size)
+    
     const handleSquareClick = useCallback((position) => {
         if (!position) {
             setSelectedPiece(null);
@@ -164,19 +159,32 @@ const BoardContainer = React.memo((props) => {
                 onSquareClick={handleSquareClick} 
                 onDragStart={handleDragStart}
             />
+            {animation && (
+             <Animation
+                 type={animation}
+                 options={{ loop: false, autoplay: true }}
+                 width={size * 2} 
+                 height={size * 2} 
+                 customStyle={{
+                position: 'absolute',
+                top: animationPosition.row * size - (size * 0.5), 
+                left: animationPosition.col * size - (size * 0.5),
+                zIndex: 10,
+             }}
+            />
+            )}
         </div>
     );
 });
 
 BoardContainer.propTypes = {
+    FEN: PropTypes.string.isRequired,
+    setFEN: PropTypes.func.isRequired,
     size: PropTypes.number.isRequired,
     board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
     turn: PropTypes.string.isRequired,
     switchTurn: PropTypes.func.isRequired,
-    FEN: PropTypes.string.isRequired,
-    setFEN: PropTypes.func.isRequired,
-    gameId: PropTypes.number,
-    ws: PropTypes.object,
+    handleGameOver: PropTypes.func.isRequired,
 };
 
 export default BoardContainer;
