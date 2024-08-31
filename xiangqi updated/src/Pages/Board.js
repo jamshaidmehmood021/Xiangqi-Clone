@@ -56,7 +56,8 @@ const Board = () => {
 
         const websocket = new WebSocket(`ws://localhost:8001/ws/game/${game_id}/`);
         
-        websocket.onopen = () => console.log('WebSocket connection established.');
+        console.log('line 59 ', websocket)
+        // websocket.onopen = () => console.log('WebSocket connection established.');
         websocket.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.type === 'move') {
@@ -65,7 +66,9 @@ const Board = () => {
                 setTurn(data.turn); 
             }
         };
+
         websocket.onclose = () => console.log('WebSocket connection closed.');
+        // websocket.onopen = () => console.log('WebSocket connection established.');        
         setWs(websocket);
 
         return () => {
