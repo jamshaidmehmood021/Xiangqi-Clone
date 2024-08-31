@@ -5,7 +5,8 @@ const Home = lazy(() => import('Pages/Home'));
 const SignIn = lazy(() => import('Pages/SignIn'));
 const SignUp = lazy(() => import('Pages/SignUp'));
 const Board = lazy(() => import('Pages/Board'));
-const LandingPage = lazy(()=> import('Pages/LandingPage.js'));
+const LandingPage = lazy(()=> import('Pages/LandingPage'));
+const GamePage = lazy(()=> import('Pages/GamePage'))
 
 export const LazyHome = () => (
   <React.Suspense fallback={<Bars />}>
@@ -34,5 +35,11 @@ export const LazyXiangqiBoard = () => (
 export const LazyLandingPage = () => (
   <React.Suspense fallback={<Bars />}>
     <LandingPage />
+  </React.Suspense>
+);
+
+export const LazyGamePage = () => (
+  <React.Suspense fallback={<Bars />}>
+    <GamePage/>
   </React.Suspense>
 );

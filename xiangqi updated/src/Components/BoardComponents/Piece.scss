@@ -1,0 +1,96 @@
+
+
+.dragging {
+  opacity: 0;
+}
+
+.piece {
+  font-size: 36px;
+  position: relative;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.piece.selected {
+  border: 4px solid rgb(233, 150, 0); 
+  border-radius: 100%;
+  box-shadow: 0 0 5px rgb(233, 150, 0);
+}
+
+@mixin piece-style($color, $image) {
+    background-color: $color;
+    box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 5px,
+      rgba(255, 255, 255, 0.3) 0px 4px 2px 0px inset,
+      rgba(0, 0, 0, 0.3) 0px -3px 2px 0px inset;
+    border-radius: 100%;
+    height: 100%;
+    display: block;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    background-image: url($image);
+  
+    @media (max-width: 768px) {
+      background-size: 15px;
+    }
+  
+    @media (max-height: 768px) {
+      background-size: 15px;
+    }
+  }
+  
+  .r_chariot {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/rook.svg');
+  }
+  
+  .r_horse {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/horse.svg');
+  }
+  
+  .r_elephant {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/elephant.svg');
+  }
+  
+  .r_advisor {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/advisor.svg');
+  }
+  
+  .r_general {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/king.svg');
+  }
+  
+  .r_cannon {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/cannon.svg');
+  }
+  
+  .r_soldier {
+    @include piece-style(rgb(187, 16, 6), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/pawn.svg');
+  }
+  
+  .b_chariot {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/rook.svg');
+  }
+  
+  .b_horse {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/horse.svg');
+  }
+  
+  .b_elephant {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/elephant.svg');
+  }
+  
+  .b_advisor {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/advisor.svg');
+  }
+  
+  .b_general {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/king.svg');
+  }
+  
+  .b_cannon {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/cannon.svg');
+  }
+  
+  .b_soldier {
+    @include piece-style(rgb(31, 31, 31), 'https://d2g1zxtf4l76di.cloudfront.net/images/pieces/pawn.svg');
+  }

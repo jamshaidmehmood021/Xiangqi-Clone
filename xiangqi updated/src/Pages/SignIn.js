@@ -1,38 +1,44 @@
 import React, { useState, useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-import axiosInstance from "lib/axios";
-
+import axiosInstance from 'lib/axios';
 import Button from 'Components/PlainButton';
 import Input from 'Components/Input';
-
 import { AuthContext } from 'Context/authContext';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { jwtDecode } from 'jwt-decode';
+
 
 const SignIn = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
-    const [username, setUsername] = useState('');
+    const [usernameOrEmail, setUsernameOrEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
+
 
     const onSubmit = async (event) => {
         event.preventDefault();
         const newErrors = {};
-        if (!username) newErrors.username = 'Email or Username is required';
+        if (!usernameOrEmail) newErrors.usernameOrEmail = 'Email or Username is required';
         if (!password) newErrors.password = 'Password is required';
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
+
         try {
-            const response = await axiosInstance.post("/token/", { username, password });
+            const response = await axiosInstance.post('/login/', { username_or_email: usernameOrEmail, password });
             if (response.status === 200) {
                 const { access, refresh } = response.data;
-                login({ access, refresh });
+                const decodedToken = jwtDecode(access); 
+                const user = decodedToken.user_id; 
+                login(access, refresh);
                 toast.success('Login successful!');
-                navigate('/board');
+
+                await checkOrCreateOrUpdateGame(user); 
             } else {
                 toast.error('Login failed! Please check your credentials.');
             }
@@ -41,15 +47,36 @@ const SignIn = () => {
         }
     };
 
+    const checkOrCreateOrUpdateGame = async (username) => {
+        try {
+            const response = await axiosInstance.get('/games/');
+            const games = response.data;
+            const availableGame = games.find(game =>
+                game.player1 !== username && game.player2 !== username
+            );
+
+            if (availableGame) {
+                navigate('/game', { state: { games } });
+            } else {
+                const newGameResponse = await axiosInstance.post('/game/', { player1: username });
+                const { id } = newGameResponse.data;
+                toast.success('New game created successfully!');
+                navigate(`/board/${id}`);  
+            }
+        } catch (e) {
+            toast.error('An error occurred while checking or creating/updating a game.');
+        }
+    };
+
     return (
-        <>
+        <div>
             <form onSubmit={onSubmit} className="space-y-4">
                 <Input
-                    id="username"
+                    id="usernameOrEmail"
                     placeholder="Email or Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    error={errors.username}
+                    value={usernameOrEmail}
+                    onChange={(e) => setUsernameOrEmail(e.target.value)}
+                    error={errors.usernameOrEmail}
                 />
                 <Input
                     id="password"
@@ -63,7 +90,7 @@ const SignIn = () => {
                 <Button type="submit">Sign In</Button>
             </form>
             <ToastContainer />
-        </>
+        </div>
     );
 };
 

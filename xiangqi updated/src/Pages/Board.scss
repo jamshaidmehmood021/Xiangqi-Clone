@@ -6,7 +6,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 #game-area {
   display: flex;
   -webkit-box-pack: center;
@@ -15,7 +14,21 @@ body {
   align-items: center;
 }
 
-@media (max-width: 47.9375em) {
+.turn-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+@media (max-width: 768px) {
   #game-area {
     height: 100%;
     width: 100%;

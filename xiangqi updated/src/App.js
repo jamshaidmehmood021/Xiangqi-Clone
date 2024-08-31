@@ -8,7 +8,8 @@ import {
   LazyXiangqiBoard,
   LazyLandingPage,
   LazySignUp,
-  LazySignIn
+  LazySignIn,
+  LazyGamePage
 } from 'LazyComponent/LazyLoading.js';
 
 const App = () => {
@@ -20,7 +21,8 @@ const App = () => {
             <Route path="signUp" element={<LazySignUp />} />
             <Route path="signIn" element={<LazySignIn />} />
         </Route>
-        <Route path="/board" element={<LazyXiangqiBoard />} />
+        <Route path="/board/:game_id?" element={<LazyXiangqiBoard />} />
+        <Route path="/game" element={<LazyGamePage />} />
       </Routes>
     </Router>
   )
