@@ -4,15 +4,14 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from Users.models import CustomUser
+from Users.models import Game
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
         token['username'] = user.username
-
         return token
-
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -35,3 +34,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             skill=validated_data['skill'],
         )
         return user
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ['id', 'player1', 'player2', 'moves', 'fen']
+        extra_kwargs = {
+            'player2': {'required': False}, 
+        }
