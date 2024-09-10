@@ -1,0 +1,57 @@
+{
+  "name": "shopping-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/dayjs": "^3.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@material-ui/core": "^4.12.4",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/lab": "^6.0.0-beta.9",
+    "@mui/material": "^6.0.2",
+    "@mui/x-date-pickers": "^5.0.0-beta.6",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.20.5",
+    "axios": "^1.7.7",
+    "date-fns": "^2.29.2",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-file-base64": "^1.0.3",
+    "react-loading-icons": "^1.1.0",
+    "react-modal": "^3.16.1",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
