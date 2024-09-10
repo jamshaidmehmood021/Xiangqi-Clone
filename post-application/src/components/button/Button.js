@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{memo} from 'react';
 import { Button as MuiButton } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Button = ({ variant = 'contained', color = 'primary', size = 'medium', onClick, children, ...props }) => {
+const Button = memo(({ variant = 'contained', color = 'primary', size = 'medium', onClick, children, ...props }) => {
   const classes = useStyles();
   
   return (
@@ -25,6 +26,13 @@ const Button = ({ variant = 'contained', color = 'primary', size = 'medium', onC
       {children}
     </MuiButton>
   );
+});
+Button.propTypes = {
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
 };
 
 export default Button;

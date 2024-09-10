@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
-import {  Checkbox, FormControlLabel, Divider, Typography, Stack, Card } from '@mui/material';
+import { Checkbox, FormControlLabel, Divider, Typography, Stack, Card } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress'; // For loading spinner
 
 import { GoogleIcon, FacebookIcon } from 'muiCustomIcons/CustomIcons';
-
 import useAuth from 'hook/useAuth';
 import { toast } from 'react-toastify';
 
@@ -62,6 +62,7 @@ const SignUp = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { apiCall, error } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -69,22 +70,49 @@ const SignUp = () => {
     }
   }, [error]);
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  const getFormData = useCallback((event) => {
     const data = new FormData(event.currentTarget);
-    const formData = {
+    return {
       name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     };
+  }, []);
 
-    const response = await apiCall('/signup', formData);
+  const onSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+      if (loading) return; 
+      setLoading(true);
 
-    if (response && response.error === false) {
-      toast.success('Sign up successful!');
-      navigate('/');
-    }
-  };
+      const formData = getFormData(event);
+
+      try {
+        const response = await apiCall('/signup', formData);
+
+        if (response && response.error === false) {
+          toast.success('Sign up successful!');
+          navigate('/');
+        } else {
+          toast.error(response.message || 'Sign up failed.');
+        }
+      } catch (error) {
+        toast.error('An error occurred. Please try again.');
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [apiCall, navigate, getFormData, loading] 
+  );
+
+  const handleGoogleSignUp = useCallback(() => {
+    alert('Sign up with Google');
+  }, []);
+
+  const handleFacebookSignUp = useCallback(() => {
+    alert('Sign up with Facebook');
+  }, []);
 
   return (
     <Stack className={classes.signUpContainer}>
@@ -119,8 +147,8 @@ const SignUp = () => {
             control={<Checkbox value="allowExtraEmails" color="primary" />}
             label="I want to receive updates via email."
           />
-          <Button type="submit" fullWidth variant="contained">
-            Sign up
+          <Button type="submit" fullWidth variant="contained" disabled={loading}>
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign up'}
           </Button>
           <Typography sx={{ textAlign: 'center' }}>
             Already have an account? <Link to="/" style={{ fontWeight: 'bold' }}>Sign in</Link>
@@ -131,7 +159,7 @@ const SignUp = () => {
           <Button
             fullWidth
             variant="outlined"
-            onClick={() => alert('Sign up with Google')}
+            onClick={handleGoogleSignUp}
             startIcon={<GoogleIcon />}
           >
             Sign up with Google
@@ -139,7 +167,7 @@ const SignUp = () => {
           <Button
             fullWidth
             variant="outlined"
-            onClick={() => alert('Sign up with Facebook')}
+            onClick={handleFacebookSignUp}
             startIcon={<FacebookIcon />}
           >
             Sign up with Facebook

@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
-import { useTheme, useMediaQuery } from '@mui/material';
+import React, { useContext, useState, memo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useTheme, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 import { Drawer, Typography, Divider } from '@material-ui/core';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DrawerComponent = ({ children }) => {
+const DrawerComponent = memo(({ children }) => {
     const customClasses = useStyles();
     const navigate = useNavigate();
     const location = useLocation();
@@ -73,10 +74,9 @@ const DrawerComponent = ({ children }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [open, setOpen] = useState(false);
 
-    const handleDrawerToggle = () => {
-        setOpen(!open);
-    };
-
+    const handleDrawerToggle = useCallback(() => {
+        setOpen(prevOpen => !prevOpen);
+    }, []);
 
     const menuItems = [
         {
@@ -111,7 +111,6 @@ const DrawerComponent = ({ children }) => {
         },
 
     ];
-
     return (
         <div className={customClasses.root}>
             {isMobile && (
@@ -181,6 +180,10 @@ const DrawerComponent = ({ children }) => {
             </div>
         </div>
     );
-};
+});
 
+DrawerComponent.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+  
 export default DrawerComponent;

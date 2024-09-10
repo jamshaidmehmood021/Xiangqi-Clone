@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AddPost = () => {
+const AddPost = () => {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.post);
   const classes = useStyles();
@@ -61,18 +61,18 @@ export const AddPost = () => {
     email: user || '',
   });
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  }, []);
 
-  const handleDateChange = (newDate) => {
-    setFormData({ ...formData, date: newDate });
-  };
+  const handleDateChange = useCallback((newDate) => {
+    setFormData((prevData) => ({ ...prevData, date: newDate }));
+  }, []);
 
-  const handleImageChange = (base64) => {
-    setFormData({ ...formData, image: base64 });
-  };
+  const handleImageChange = useCallback(({ base64 }) => {
+    setFormData((prevData) => ({ ...prevData, image: base64 }));
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -136,7 +136,7 @@ export const AddPost = () => {
               <FormLabel htmlFor="image">Upload Image</FormLabel>
               <FileBase64
                 multiple={false}
-                onDone={({ base64 }) => handleImageChange(base64)}
+                onDone={handleImageChange}
                 accept="image/*"
               />
             </FormControl>
@@ -161,4 +161,4 @@ export const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default React.memo(AddPost);

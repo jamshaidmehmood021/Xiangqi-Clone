@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, CircularProgress, Typography } from '@mui/material';
 import { Bars } from 'react-loading-icons';
@@ -6,7 +6,7 @@ import { Bars } from 'react-loading-icons';
 import Post from 'pages/post';  
 import { fetchPosts } from 'slice/PostSlice'; 
 
-const Home = () => {
+const Home = memo(() => {
     const dispatch = useDispatch();
     const { posts, status, error } = useSelector((state) => state.post);  
 
@@ -43,6 +43,6 @@ const Home = () => {
             )}
         </Container>
     );
-};
+});
 
 export default Home;

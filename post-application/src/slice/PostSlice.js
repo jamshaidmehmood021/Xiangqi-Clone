@@ -210,7 +210,6 @@ const postSlice = createSlice({
       .addCase(addComment.fulfilled, (state, action) => {
         state.status = STATUS.SUCCESS;
         const { postId, ...newComment } = action.payload;
-        console.log(newComment);
         state.comments = {
           ...state.comments,
           [postId]: (state.comments[postId] || []).concat(newComment)

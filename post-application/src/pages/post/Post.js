@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardHeader, CardContent, IconButton, Typography, Menu, MenuItem, TextField, Button, Modal } from '@mui/material';
 import { FavoriteBorder, Favorite, ChatBubbleOutline, MoreVert, Delete } from '@mui/icons-material';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
@@ -21,7 +22,8 @@ const style = {
   p: 4,
 };
 
-const Post = ({ post }) => {
+const Post = memo((props) => {
+  const { post } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, userID } = useContext(AuthContext);
@@ -31,27 +33,22 @@ const Post = ({ post }) => {
   const [newComment, setNewComment] = useState('');
   const [commentOpen, setCommentOpen] = useState(false);
   const [visibleComments, setVisibleComments] = useState(2);
-  const [openModal, setOpenModal] = React.useState(false);
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [commentsLoaded, setCommentsLoaded] = useState(false);
 
   const [likesInfo, setLikesInfo] = useState({ likedByMe: false, likes: [], count: 0 });
 
   const comments = useSelector(state => state.post.comments[post.id]);
   const likedPosts = useSelector(state => state.post.likedPosts);
 
-
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    dispatch(fetchComments(post.id));
     setLiked(likedPosts.includes(post.id));
 
     dispatch(getLikesInfo({ postId: post.id }))
       .then(({ payload }) => {
-        //console.log(payload);
-        const likesData = payload.likedBy || [];
-        //console.log(likesData);
+        const likesData = payload?.likedBy || [];
         const likedByMe = likesData.some(like => like.email === user);
         setLikesInfo({
           likedByMe,
@@ -59,53 +56,56 @@ const Post = ({ post }) => {
           count: likesData.length
         });
       });
-  }, [dispatch, post.id, likedPosts, userID, user]);
+  }, [dispatch, post.id, likedPosts, user]);
 
-
-  const handleLikeClick = (postId) => {
+  const handleLikeClick = useCallback(() => {
     if (liked || likesInfo.likedByMe) {
-      dispatch(unlikePost({ postId, userId: userID }));
+      dispatch(unlikePost({ postId: post.id, userId: userID }));
     } else {
-      dispatch(likePost({ postId, userId: userID }));
+      dispatch(likePost({ postId: post.id, userId: userID }));
     }
-    setLiked(!liked);
-  };
+    setLiked(prev => !prev);
+  }, [dispatch, post.id, liked, likesInfo.likedByMe, userID]);
 
-  const handleMenuClick = (event) => {
+  const handleMenuClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleMenuClose = () => {
+  const handleMenuClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
-  const handleDelete = (postId) => {
-    dispatch(deletePost(postId));
+  const handleDelete = useCallback(() => {
+    dispatch(deletePost(post.id));
     handleMenuClose();
-  };
+  }, [dispatch, post.id, handleMenuClose]);
 
-  const handleCommentChange = (event) => {
+  const handleCommentChange = useCallback((event) => {
     setNewComment(event.target.value);
-  };
+  }, []);
 
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = useCallback(() => {
     if (newComment.trim()) {
       dispatch(addComment({ postId: post.id, text: newComment, userId: userID }));
       setNewComment('');
     }
-  };
+  }, [dispatch, post.id, newComment, userID]);
 
-  const handleToggleComments = () => {
-    setCommentOpen(!commentOpen);
-  };
+  const handleToggleComments = useCallback(() => {
+    if (!commentsLoaded) {
+      dispatch(fetchComments(post.id));
+      setCommentsLoaded(true);
+    }
+    setCommentOpen(prev => !prev);
+  }, [dispatch, post.id, commentsLoaded]);
 
-  const handleDeleteComment = (commentId) => {
+  const handleDeleteComment = useCallback((commentId) => {
     dispatch(deleteComment({ postId: post.id, commentId }));
-  };
+  }, [dispatch, post.id]);
 
-  const handleShowMoreComments = () => {
+  const handleShowMoreComments = useCallback(() => {
     setVisibleComments(comments.length);
-  };
+  }, [comments]);
 
   const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -127,7 +127,8 @@ const Post = ({ post }) => {
         avatar={
           <Avatar
             onClick={() => navigate(`/profile/${post.user.email}`)}
-            sx={{ width: 48, height: 48, bgcolor: 'primary.main' }}>
+            sx={{ width: 48, height: 48, bgcolor: 'primary.main' }}
+          >
             {post.user.name.charAt(0).toUpperCase()}
           </Avatar>
         }
@@ -144,7 +145,7 @@ const Post = ({ post }) => {
               <Menu
                 id="post-menu"
                 anchorEl={anchorEl}
-                open={open}
+                open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
                 PaperProps={{
                   sx: {
@@ -152,7 +153,7 @@ const Post = ({ post }) => {
                   },
                 }}
               >
-                <MenuItem onClick={() => handleDelete(post.id)}>Delete Post</MenuItem>
+                <MenuItem onClick={handleDelete}>Delete Post</MenuItem>
               </Menu>
             )}
           </div>
@@ -206,7 +207,7 @@ const Post = ({ post }) => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <IconButton
-              onClick={() => handleLikeClick(post.id)}
+              onClick={handleLikeClick}
               sx={{ color: likesInfo.likedByMe || liked ? '#ff1744' : 'inherit' }}
             >
               {likesInfo.likedByMe || liked ? (
@@ -218,7 +219,6 @@ const Post = ({ post }) => {
                 {likesInfo.count}
               </Typography>
             </IconButton>
-
 
             <IconButton onClick={handleToggleComments}>
               <ChatBubbleOutline sx={{ fontSize: 28 }} />
@@ -235,7 +235,7 @@ const Post = ({ post }) => {
             </Typography>
           )}
           {likesInfo.likes.length > 0 && (
-            <Typography variant="body2" onClick={handleOpen}>
+            <Typography variant="body2" onClick={() => setOpenModal(true)}>
               {likesInfo.likes
                 .filter((like) => like.email !== user)
                 .map((like, index) => (
@@ -247,96 +247,76 @@ const Post = ({ post }) => {
         </Box>
         <Modal
           open={openModal}
-          onClose={handleClose}
+          onClose={() => setOpenModal(false)}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              People who liked this post
+              People who liked the post
             </Typography>
-            <Box sx={{ mt: 2 }}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {likesInfo.likes.map((like) => (
-                <Box
-                  key={like.id}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: 1,
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Avatar
-                      sx={{ bgcolor: 'primary.main', marginRight: 1 }}
-                      onClick={() => navigate(`/profile/${like.email}`)}
-                    >
-                      {like.name.charAt(0).toUpperCase()}
-                    </Avatar>
-                    <Typography>{like.name}</Typography>
-                  </Box>
-                  <Favorite sx={{ fontSize: 28, color: '#ff1744' }} />
-                </Box>
+                <div key={like.id}>{like.name}</div>
               ))}
-            </Box>
-            <Button
-              onClick={handleClose}
-              sx={{
-                marginTop: 2,
-                background: '#ff1744',
-                color: 'white',
-                marginLeft: 'auto',
-                display: 'block',
-              }}
-            >
-              Close
-            </Button>
+            </Typography>
           </Box>
         </Modal>
-        {commentOpen && (
-          <Box sx={{ marginTop: 2 }}>
-            <TextField
-              fullWidth
-              multiline
-              rows={2}
-              value={newComment}
-              onChange={handleCommentChange}
-              placeholder="Add a comment..."
-              sx={{ marginBottom: 2 }}
-            />
-            <Button variant="contained" color="primary" onClick={handleCommentSubmit}>
-              Post Comment
-            </Button>
-            <Box sx={{ marginTop: 2 }}>
-              {comments.slice(0, visibleComments).map((comment) => (
-                <Box key={comment.id} sx={{ marginBottom: 1, display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                    <Avatar sx={{ marginRight: 1, bgcolor: 'primary.main' }} onClick={() => navigate(`/profile/${comment.user?.email || comment.userEmail}`)}>
-                      {comment.user?.name?.[0] || comment.userName?.[0]}
-                    </Avatar>
-                    <Typography variant="body2" color="text.primary">
-                      <strong>{comment.user?.name || comment.userName}:</strong>
-                      {` ${comment.text}`}
-                    </Typography>
-                  </Box>
-                  {userID === comment.userId && (
-                    <IconButton onClick={() => handleDeleteComment(comment.id)} size="small" sx={{ color: 'red' }}>
-                      <Delete />
-                    </IconButton>
-                  )}
-                </Box>
-              ))}
-              {comments.length > visibleComments && (
-                <Button onClick={handleShowMoreComments} sx={{ marginTop: 2 }}>
-                  Show More
-                </Button>
+      </CardContent>
+
+      {commentOpen && comments && (
+        <Box sx={{ paddingX: 2, paddingY: 1 }}>
+          <TextField
+            fullWidth
+            label="Add a comment"
+            variant="outlined"
+            value={newComment}
+            onChange={handleCommentChange}
+          />
+          <Button onClick={handleCommentSubmit} sx={{ marginTop: 1 }}>
+            Post
+          </Button>
+          {comments.slice(0, visibleComments).map((comment) => (
+            <Box key={comment.id} sx={{ marginBottom: 1, display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+                <Avatar sx={{ marginRight: 1, bgcolor: 'primary.main' }} onClick={() => navigate(`/profile/${comment.user?.email || comment.userEmail}`)}>
+                  {comment.user?.name?.[0] || comment.userName?.[0]}
+                </Avatar>
+                <Typography variant="body2" color="text.primary">
+                  <strong>{comment.user?.name || comment.userName}:</strong>
+                  {`${comment.text}`}
+                </Typography>
+              </Box>
+              {userID === comment.userId && (
+                <IconButton onClick={() => handleDeleteComment(comment.id)} size="small" sx={{ color: 'red' }}>
+                  <Delete />
+                </IconButton>
               )}
             </Box>
-          </Box>
-        )}
-      </CardContent>
+          ))}
+          {comments.length > visibleComments && (
+            <Button onClick={handleShowMoreComments} sx={{ marginTop: 1 }}>
+              Show more comments
+            </Button>
+          )}
+        </Box>
+      )}
     </Card>
   );
+});
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    caption: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+    user: PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    date: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Post;
