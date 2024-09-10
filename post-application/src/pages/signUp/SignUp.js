@@ -94,11 +94,11 @@ const SignUp = () => {
           toast.success('Sign up successful!');
           navigate('/');
         } else {
-          toast.error(response.message || 'Sign up failed.');
+          toast.error(response?.message || 'Sign up failed.');
         }
       } catch (error) {
         toast.error('An error occurred. Please try again.');
-        console.error(error);
+        console.error(error.message);
       } finally {
         setLoading(false);
       }

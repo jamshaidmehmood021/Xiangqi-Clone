@@ -109,7 +109,7 @@ const SignIn = () => {
           toast.success('Login successful!');
           handleNavigation();
         } else {
-          toast.error(response.message || 'Login failed.');
+          toast.error(response?.message || 'Login failed: Email or password is incorrect.');
         }
       } catch (error) {
         toast.error('An error occurred. Please try again.');
