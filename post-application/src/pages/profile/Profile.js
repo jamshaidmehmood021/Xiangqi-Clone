@@ -149,7 +149,7 @@ const Profile = memo(() => {
 });
 
 Profile.propTypes = {
-    email: PropTypes.string.isRequired,   
+    email: PropTypes.string,   
     posts: PropTypes.arrayOf(             
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -157,7 +157,7 @@ Profile.propTypes = {
             caption: PropTypes.string,
         })
     ),
-    status: PropTypes.oneOf([STATUS.LOADING, STATUS.SUCCESS, STATUS.ERROR]).isRequired, 
+    status: PropTypes.oneOf([STATUS.LOADING, STATUS.SUCCESS, STATUS.ERROR]), 
     error: PropTypes.string,              
 };
 

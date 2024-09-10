@@ -1,10 +1,10 @@
-import React, { createContext, useState, useEffect} from 'react';
+import React, { createContext, useState, useEffect, memo} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext(null);
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = memo(({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(() => {
         const token = localStorage.getItem('Token');
@@ -54,6 +54,6 @@ const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     );
-};
+});
 
 export { AuthContext, AuthProvider };

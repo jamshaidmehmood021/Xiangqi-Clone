@@ -34,6 +34,8 @@ const Post = memo((props) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const [visibleComments, setVisibleComments] = useState(2);
   const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
 
   const [likesInfo, setLikesInfo] = useState({ likedByMe: false, likes: [], count: 0 });
@@ -228,7 +230,7 @@ const Post = memo((props) => {
             </IconButton>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }} onClick={()=> handleOpen()}>
           {likesInfo.likedByMe && (
             <Typography variant="body2" sx={{ marginRight: 1 }}>
               You &
@@ -247,19 +249,50 @@ const Post = memo((props) => {
         </Box>
         <Modal
           open={openModal}
-          onClose={() => setOpenModal(false)}
+          onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              People who liked the post
+              People who liked this post
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2 }}>
               {likesInfo.likes.map((like) => (
-                <div key={like.id}>{like.name}</div>
+                <Box
+                  key={like.id}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: 1,
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar
+                      sx={{ bgcolor: 'primary.main', marginRight: 1 }}
+                      onClick={() => navigate(`/profile/${like.email}`)}
+                    >
+                      {like.name.charAt(0).toUpperCase()}
+                    </Avatar>
+                    <Typography>{like.name}</Typography>
+                  </Box>
+                  <Favorite sx={{ fontSize: 28, color: '#ff1744' }} />
+                </Box>
               ))}
-            </Typography>
+            </Box>
+            <Button
+              onClick={handleClose}
+              sx={{
+                marginTop: 2,
+                background: '#ff1744',
+                color: 'white',
+                marginLeft: 'auto',
+                display: 'block',
+              }}
+            >
+              Close
+            </Button>
           </Box>
         </Modal>
       </CardContent>

@@ -183,7 +183,7 @@ const DrawerComponent = memo(({ children }) => {
 });
 
 DrawerComponent.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
   
 export default DrawerComponent;
