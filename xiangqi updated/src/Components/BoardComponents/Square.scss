@@ -1,0 +1,19 @@
+
+.square {
+  float: left;
+  position: relative;
+  padding: 5px;
+}
+
+.square.highlight::after {
+  content: "";
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  width: 20px; 
+  height: 20px; 
+  background-color: rgb(157, 11, 157);
+  border-radius: 50%; 
+}
+
