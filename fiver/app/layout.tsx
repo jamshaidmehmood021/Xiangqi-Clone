@@ -1,5 +1,6 @@
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
+import '@/app/globals.css';
 
 import { ToastContainer } from '@/app/toastContainer';
 import { AuthProvider } from '@/app/context/authContext';
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{background: 'linear-gradient(135deg, rgba(7, 18, 31, 1) 0%, rgba(0, 0, 0, 0.8) 100%)', minHeight: '100vh'}}>
         <AuthProvider>
           <StoreProvider>
             <Navbar />

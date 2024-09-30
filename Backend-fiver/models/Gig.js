@@ -11,6 +11,10 @@ const Gig = sequelize.define('Gig', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
     image: {
         type: DataTypes.TEXT, 
         allowNull: true,
@@ -32,5 +36,6 @@ const Gig = sequelize.define('Gig', {
 });
 
 Gig.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
 
 module.exports = Gig;

@@ -26,6 +26,7 @@ const addPost = async (req, res) => {
             userId: user.id, 
         });
 
+        console.log(post);
         return res.status(200).json({ message: 'Post added successfully.', error: false });
     } catch (e) {
         console.error('AddPost Error', e);

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 interface ApiResponse<T> {
   data: T;
@@ -15,7 +15,8 @@ const useAuth = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const apiCall: ApiCall = async (endpoint, data, method = 'POST', token = null) => {
+  const apiCall: ApiCall = useCallback(async (endpoint, data, method = 'POST') => {
+    const token = localStorage.getItem('token');
     setLoading(true);
     setError(null);
   
@@ -50,9 +51,10 @@ const useAuth = () => {
       setError(message);
       return { data: null, error: message };
     }
-  };  
+  }, []);
 
   return { apiCall, loading, error };
 };
 
 export default useAuth;
+

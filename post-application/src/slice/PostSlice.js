@@ -22,6 +22,7 @@ export const createPost = createAsyncThunk(
   'posts/createPost',
   async (postData, { dispatch, rejectWithValue }) => {
     try {
+      console.log(postData);
       const response = await axiosInstance.post('/addPost', postData);
       dispatch(fetchPosts()); 
       return response.data;

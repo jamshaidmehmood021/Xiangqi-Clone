@@ -77,7 +77,7 @@ const AddPost = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await dispatch(createPost(formData));
-
+    console.log(result);
     if (createPost.fulfilled.match(result)) {
       toast.success(result.payload.message);
       navigate('/home');

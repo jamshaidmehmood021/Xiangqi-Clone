@@ -6,7 +6,6 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -14,6 +13,11 @@
   }
 }
 
+body{
+  background: 'linear-gradient(135deg, rgba(7, 18, 31, 1) 0%, rgba(0, 0, 0, 0.8) 100%)';
+  height: '100vh';
+  background-size: cover;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
